@@ -11,12 +11,12 @@ header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 6vw;
+    padding: 15px 6vw;
 }
 
 nav #searchbar {
     width: 30vw;
-    height: 32px;
+    height: 42px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -45,13 +45,13 @@ nav #searchbar {
 }
 
 #search-bar-div input {
+    height: 32px;
     border: 0;
     background-color: #F5F5F5;
     /* width: 25vw; */
     width: 100%;
     outline: none;
     padding-left: 0.7vw;
-    font-size: 0.8rem;
     color: #a5a5a5;
     font-weight: 300;
 }
@@ -60,7 +60,7 @@ nav #actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
+    font-size: 1rem;
     white-space: nowrap;
 }
 
@@ -82,7 +82,7 @@ nav #user-actions {
 }
 
 #user-actions img {
-    width: 1.5rem;
+    width: 1.7rem;
 }
 
 #burger-menu {
