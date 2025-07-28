@@ -1,9 +1,11 @@
+import { logo } from "../assets/images/Logo.png";
 
 export const Navbar = () => {
     return (
         <>
             <header>
-                <nav></nav>
+                <nav>
+                </nav>
             </header>
         </>
     )
