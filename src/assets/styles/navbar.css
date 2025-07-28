@@ -1,6 +1,6 @@
 :root {
-    --search-bar-color : #F5F5F5;
-    --text-color : #a5a5a5;
+    --search-bar-color: #F5F5F5;
+    --text-color: #a5a5a5;
 }
 
 header {
@@ -47,7 +47,8 @@ nav #searchbar {
 #search-bar-div input {
     border: 0;
     background-color: #F5F5F5;
-    width: 25vw;
+    /* width: 25vw; */
+    width: 100%;
     outline: none;
     padding-left: 0.7vw;
     font-size: 0.8rem;
@@ -82,4 +83,36 @@ nav #user-actions {
 
 #user-actions img {
     width: 1.5rem;
+}
+
+#burger-menu {
+    display: none;
+    
+}
+
+
+@media (max-width: 800px) {
+
+    header nav{
+        padding: 10px 2.5vw;
+    }
+
+    nav #actions {
+        display: none;
+    }
+
+    #burger-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.3rem;
+    }
+
+    nav #searchbar {
+        width: 40vw;
+    }
+
+    nav #user-actions {
+        width: 15vw;
+    }
 }

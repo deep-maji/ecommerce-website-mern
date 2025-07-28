@@ -3,6 +3,7 @@ import SearchIcon from "../assets/images/Search.svg";
 import Fav from "../assets/images/Favorites.svg";
 import User from "../assets/images/User.svg";
 import Cart from "../assets/images/Cart.svg";
+import Burger from "../assets/images/Burger.svg";
 import "../assets/styles/navbar.css";
 
 export const Navbar = () => {
@@ -41,6 +42,9 @@ export const Navbar = () => {
                         <div id="user" className="user-actions-btns">
                             <a href="#"><img src={User} alt="user"></img></a>
                         </div>
+                    </div>
+                    <div id="burger-menu">
+                        <img src={Burger} alt="menu"></img>
                     </div>
                 </nav>
             </header>
