@@ -11,12 +11,12 @@ export const Navbar = () => {
             <header>
                 <nav>
                     <div id="logo">
-                        <img src={Logo} alt="Logo"></img>
+                        <a href="#"><img src={Logo} alt="Logo"></img></a>
                     </div>
                     <div id="searchbar">
                         <div id="Search-icon-div">
                             <label htmlFor="search">
-                                <img src={SearchIcon} alt="searchIcon"></img>
+                                <img id="search-icon" src={SearchIcon} alt="searchIcon"></img>
                             </label>
                         </div>
                         <div id="search-bar-div">
@@ -26,20 +26,20 @@ export const Navbar = () => {
                         </div>
                     </div>
                     <div id="actions">
-                        <div>Home</div>
-                        <div>About</div>
-                        <div>Contact US</div>
-                        <div>Blog</div>
+                        <a href="#" className="action-btn nav-active"><div>Home</div></a>
+                        <a href="#" className="action-btn"><div>About</div></a>
+                        <a href="#" className="action-btn"><div>Contact Us</div></a>
+                        <a href="#" className="action-btn"><div>Blog</div></a>
                     </div>
                     <div id="user-actions">
-                        <div id="wish">
-                            <img src={Fav} alt="fav"></img>
+                        <div id="wish" className="user-actions-btns">
+                            <a href="#"><img src={Fav} alt="fav"></img></a>
                         </div>
-                        <div id="cart">
-                            <img src={Cart} alt="cart"></img>
+                        <div id="cart" className="user-actions-btns">
+                            <a href="#"><img src={Cart} alt="cart"></img></a>
                         </div>
-                        <div id="user">
-                            <img src={User} alt="user"></img>
+                        <div id="user" className="user-actions-btns">
+                            <a href="#"><img src={User} alt="user"></img></a>
                         </div>
                     </div>
                 </nav>
