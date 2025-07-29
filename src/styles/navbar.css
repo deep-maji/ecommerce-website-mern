@@ -15,7 +15,7 @@ header nav {
 }
 
 nav #searchbar {
-    width: 30vw;
+    
     height: 42px;
     display: flex;
     justify-content: left;
@@ -48,10 +48,10 @@ nav #searchbar {
     height: 32px;
     border: 0;
     background-color: #F5F5F5;
-    /* width: 25vw; */
-    width: 100%;
+    width: 30vw;
     outline: none;
     padding-left: 0.7vw;
+    padding-right: 0.7vw;
     color: #a5a5a5;
     font-weight: 300;
 }
