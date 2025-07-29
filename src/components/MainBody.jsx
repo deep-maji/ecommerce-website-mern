@@ -1,8 +1,10 @@
-
+import Category from './Category'
 export const MainBody = () => {
     return (
         <>
-            <main></main>
+            <main>
+                <Category/>
+            </main>
         </>
     )
 }

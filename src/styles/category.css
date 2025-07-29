@@ -1,0 +1,26 @@
+/* Main container for the category section */
+.category-container {
+    display: flex;                
+    flex-direction: column;       
+    align-items: center;                  
+}
+
+/* Flex container for the categories */
+.category-items {
+    display: flex;                
+    justify-content: space-between;
+    width: 100%;               
+    max-width: 1200px;
+    margin-top: 2rem;  
+}
+
+/* Category card hover effect */
+.ccimgs {
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.ccimgs:hover {
+     transform: scale(1.03);
+}
+
