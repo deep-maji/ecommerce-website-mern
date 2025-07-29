@@ -6,7 +6,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 5vw;
+  padding: 5vw 8vw;
+  font-size: 1.5vw;
 }
 
 .footer-column h2 a {
@@ -70,6 +71,10 @@
   transform: scale(1.2);
 }
 
+.mid {
+  margin-right: 10vw;
+}
+
 @media (max-width: 768px) {
   .footer {
     flex-direction: column;
@@ -80,6 +85,10 @@
 
   .footer-column {
     margin: 20px 0;
+  }
+
+  .mid {
+    margin-right: 0;
   }
 
 

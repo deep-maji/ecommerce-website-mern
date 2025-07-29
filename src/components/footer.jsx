@@ -31,7 +31,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="footer-column">
+      <div className="footer-column mid">
         <h4>Customer Service</h4>
         <ul>
           <li><Link to="/contact">Contact Us</Link></li>

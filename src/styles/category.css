@@ -9,9 +9,16 @@
 .category-items {
     display: flex;                
     justify-content: space-between;
+    gap: 2vw;
     width: 100%;               
     max-width: 1200px;
     margin-top: 2rem;  
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.category-items::-webkit-scrollbar {
+    display: none;
 }
 
 /* Category card hover effect */
