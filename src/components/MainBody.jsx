@@ -1,9 +1,13 @@
 import Category from './Category'
+import { BannerOne, BannerTwo } from './banner'
+
 export const MainBody = () => {
     return (
         <>
             <main>
-                <Category/>
+                <BannerOne />
+                <Category />
+                <BannerTwo/>
             </main>
         </>
     )
