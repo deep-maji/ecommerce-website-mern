@@ -2,15 +2,27 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
-import MainBody from './components/MainBody'
+import Home from './components/Home'
+import Login from './components/Login'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path : "/",
+      element : <Home/>
+    },
+    {
+      path : "/login",
+      element : <Login/>
+    }
+  ])
 
   return (
     <>
       <Navbar/>
-      <MainBody/>
+      <RouterProvider router={router}/>
       <Footer/>
     </>
   )

@@ -1,7 +1,7 @@
 import Category from './Category'
 import { BannerOne, BannerTwo } from './banner'
 
-export const MainBody = () => {
+export const Home = () => {
     return (
         <>
             <main>
@@ -13,4 +13,4 @@ export const MainBody = () => {
     )
 }
 
-export default MainBody;
+export default Home;

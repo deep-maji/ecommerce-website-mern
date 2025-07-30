@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/Footer.css";
 
 import Twitter  from "../assets/icons/Twitter.svg";
@@ -11,7 +10,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-column brand">
-        <h2><Link to="/">shopwise</Link></h2>
+        <h2><a to="/">shopwise</a></h2>
         <p>
           Shopwise is your trusted e-commerce destination for quality products.
         </p>
@@ -34,22 +33,22 @@ function Footer() {
       <div className="footer-column mid">
         <h4>Customer Service</h4>
         <ul>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/track-order">Track Order</Link></li>
-          <li><Link to="/returns">Returns & Refunds</Link></li>
-          <li><Link to="/shipping">Shipping Info</Link></li>
-          <li><Link to="/faq">FAQs</Link></li>
+          <li><a to="/contact">Contact Us</a></li>
+          <li><a to="/track-order">Track Order</a></li>
+          <li><a to="/returns">Returns & Refunds</a></li>
+          <li><a to="/shipping">Shipping Info</a></li>
+          <li><a to="/faq">FAQs</a></li>
         </ul>
       </div>
 
       <div className="footer-column">
         <h4>Information</h4>
         <ul>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-          <li><Link to="/terms">Terms & Conditions</Link></li>
-          <li><Link to="/payment-methods">Payment Methods</Link></li>
-          <li><Link to="/careers">Careers</Link></li>
+          <li><a to="/about">About Us</a></li>
+          <li><a to="/privacy-policy">Privacy Policy</a></li>
+          <li><a to="/terms">Terms & Conditions</a></li>
+          <li><a to="/payment-methods">Payment Methods</a></li>
+          <li><a to="/careers">Careers</a></li>
         </ul>
       </div>
 
