@@ -1,15 +1,21 @@
 import '../styles/LS.css'
 
-export const Login = () => {
+export const Sign = () => {
   return (
     <>
       <div id='ls-div'>
         <div id='ls-wrapper'>
           <div id='ls-heading'>
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
           </div>
           <div id='ls-info'>
             <form action=''>
+              <div className='lg'>
+                <label htmlFor='name'>Name</label>
+                <div className='in-div'>
+                  <input id='name' type='text' placeholder='Enter name'></input>
+                </div>
+              </div>
               <div className='lg'>
                 <label htmlFor='email'>Email</label>
                 <div className='in-div'>
@@ -23,10 +29,10 @@ export const Login = () => {
                 </div>
               </div>
               <div id='btn-div'>
-                <button type='submit'>Login</button>
+                <button type='submit'>Sign up</button>
               </div>
             </form>
-            <a href="/sign" className="ls-link">create new account</a>
+            <a href="/login" className="ls-link">Login <span className="subtext">existing-customer</span></a>
           </div>
         </div>
       </div>
@@ -34,4 +40,4 @@ export const Login = () => {
   )
 }
 
-export default Login;
+export default Sign;

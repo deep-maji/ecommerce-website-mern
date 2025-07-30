@@ -1,0 +1,74 @@
+#ls-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    padding: 1vw 10vw;
+}
+
+#ls-wrapper {
+    padding: 3vw;
+    border-radius: 10px;
+    transition: all ease 0.5s;
+    background-color: #F8F8F8;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#ls-heading {
+    padding: 2vw;
+    font-size: 2vw;
+}
+
+#ls-heading {
+    text-align: center;
+}
+
+#ls-info {
+    height: 100%;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    padding: 0.9vw;
+    width: 100%;
+    width: 40vw;
+    border-radius: 5px;
+    border: 0;
+}
+
+.lg {
+    margin-bottom: 2rem;
+}
+
+.in-div {
+    margin-top: 0.8rem;
+}
+
+#btn-div {
+    display: flex;
+    justify-content: center;
+    
+}
+
+#btn-div button{
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+#btn-div button:hover {
+    transform: scale(1.1);
+}
+
+.ls-link {
+    font-size: 1.2vw;
+    margin-top: 2rem;
+}
