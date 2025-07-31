@@ -15,8 +15,6 @@ header nav {
 }
 
 nav #searchbar {
-    
-    height: 42px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -45,7 +43,6 @@ nav #searchbar {
 }
 
 #search-bar-div input {
-    height: 32px;
     border: 0;
     background-color: #F5F5F5;
     width: 30vw;

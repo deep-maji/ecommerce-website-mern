@@ -13,7 +13,7 @@ export const Navbar = () => {
       <header>
         <nav>
           <div id="logo">
-            <a href="/"><img src={Logo} alt="Logo"></img></a>
+            <NavLink to={"/"}><img src={Logo} alt="Logo"></img></NavLink>
           </div>
           <div id="searchbar">
             <div id="Search-icon-div">
@@ -28,7 +28,7 @@ export const Navbar = () => {
             </div>
           </div>
           <div id="actions">
-            <a href="/" className="action-btn nav-active"><div>Home</div></a>
+            <NavLink to={"/"} className="action-btn nav-active"><div>Home</div></NavLink>
             <a href="#" className="action-btn"><div>About</div></a>
             <a href="#" className="action-btn"><div>Contact Us</div></a>
             <a href="#" className="action-btn"><div>Blog</div></a>
@@ -41,7 +41,7 @@ export const Navbar = () => {
               <a href="#"><img src={Cart} alt="cart"></img></a>
             </div>
             <div id="user" className="user-actions-btns">
-              {/* <NavLink to={'/Sign'}><img src={User} alt="user"></img></NavLink> */}
+              <NavLink to={'/sign'}><img src={User} alt="user"></img></NavLink>
             </div>
           </div>
           <div id="burger-menu">

@@ -1,8 +1,12 @@
 import '../styles/LS.css'
+import Navbar from './navbar';
+import Footer from './footer';
+import { NavLink } from 'react-router-dom';
 
 export const Login = () => {
   return (
     <>
+      <Navbar />
       <div id='ls-div'>
         <div id='ls-wrapper'>
           <div id='ls-heading'>
@@ -26,10 +30,11 @@ export const Login = () => {
                 <button type='submit'>Login</button>
               </div>
             </form>
-            <a href="/sign" className="ls-link">create new account</a>
+            <NavLink to={"/sign"} className="ls-link">create new account</NavLink>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

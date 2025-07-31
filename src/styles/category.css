@@ -15,6 +15,7 @@
     margin-top: 2rem;  
     overflow-y: hidden;
     overflow-x: auto;
+    padding: 1rem;
 }
 
 .category-items::-webkit-scrollbar {
