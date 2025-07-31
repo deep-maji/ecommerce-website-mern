@@ -12,7 +12,12 @@ function App() {
   return (
     <>
       <Navbar/>
-      <RouterProvider router={router}/>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/Sign' element={<Sign/>}></Route>
+        </Routes>
+      </Router>
       <Footer/>
     </>
   )

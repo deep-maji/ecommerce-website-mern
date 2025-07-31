@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../assets/images/Logo.svg";
 import SearchIcon from "../assets/images/Search.svg";
 import Fav from "../assets/images/Favorites.svg";
@@ -41,7 +41,7 @@ export const Navbar = () => {
               <a href="#"><img src={Cart} alt="cart"></img></a>
             </div>
             <div id="user" className="user-actions-btns">
-              <a href="/Sign"><img src={User} alt="user"></img></a>
+              {/* <NavLink to={'/Sign'}><img src={User} alt="user"></img></NavLink> */}
             </div>
           </div>
           <div id="burger-menu">
