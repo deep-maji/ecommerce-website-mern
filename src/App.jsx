@@ -4,7 +4,8 @@ import Home from './components/Home'
 import Sign from './components/Sign'
 import Login from './components/Login'
 import EcommerceAdmin from './components/Admin'
-import ProductPage from './components/Adminproducts'
+import Phone from './components/Phone'
+import Headphone from './components/HeadPhone'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
           <Route path='/sign' element={<Sign/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/admin' element={<EcommerceAdmin/>}></Route>
-          <Route path='/admin/pro' element={<ProductPage/>}></Route>
+          <Route path='/category/phone' element={<Phone/>}></Route>
+          <Route path='/category/headphone' element={<Headphone/>}></Route>
+          
         </Routes>
       </Router>
     </>
