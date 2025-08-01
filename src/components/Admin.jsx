@@ -1,61 +1,345 @@
-import '../styles/Admin.css';
+import React, { useState, useRef } from 'react';
+import '../styles/Admin.css'
 
-export const Admin = () => {
-    return (
-        <>
-            <div className="admin-container">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <h2 className="logo">ShopAdmin</h2>
-        <nav>
-          <ul>
-            <li>Dashboard</li>
-            <li>Products</li>
-            <li>Orders</li>
-            <li>Users</li>
-            <li>Settings</li>
-          </ul>
+const EcommerceAdmin = () => {
+  // State for products
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      name: 'Premium Smartphone',
+      price: 999.99,
+      category: 'Electronics',
+      stock: 50,
+      featured: true,
+      imagePreview: 'https://placehold.co/600x400?text=Smartphone'
+    },
+    {
+      id: 2,
+      name: 'Wireless Headphones',
+      price: 149.99,
+      category: 'Electronics',
+      stock: 100,
+      featured: false,
+      imagePreview: 'https://placehold.co/600x400?text=Headphones'
+    }
+  ]);
+
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    name: '',
+    price: '',
+    category: '',
+    stock: '',
+    featured: false,
+    imagePreview: ''
+  });
+
+  const [images, setImages] = useState([]);
+  const [activeTab, setActiveTab] = useState('products');
+  const [orders, setOrders] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const fileInputRef = useRef(null);
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+  };
+
+  // Handle image upload
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const imagePreviews = files.map(file => ({
+      file,
+      preview: URL.createObjectURL(file)
+    }));
+    setImages([...images, ...imagePreviews]);
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newProduct = {
+      id: products.length + 1,
+      name: formData.name,
+      price: parseFloat(formData.price),
+      category: formData.category,
+      stock: parseInt(formData.stock),
+      featured: formData.featured,
+      imagePreview: images.length > 0 ? images[0].preview : 'https://placehold.co/600x400?text=No+Image'
+    };
+    setProducts([...products, newProduct]);
+    setFormData({
+      name: '',
+      price: '',
+      category: '',
+      stock: '',
+      featured: false,
+      imagePreview: ''
+    });
+    setImages([]);
+  };
+
+  // Handle product deletion
+  const handleDeleteProduct = (id) => {
+    setProducts(products.filter(product => product.id !== id));
+  };
+
+  // Handle tab change
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+
+    // Generate sample data when switching to orders/customers tabs
+    if (tab === 'orders' && orders.length === 0) {
+      setOrders([
+        { id: 1, customer: 'John Doe', total: 149.99, status: 'Shipped', date: '2023-05-15' },
+        { id: 2, customer: 'Jane Smith', total: 299.98, status: 'Processing', date: '2023-05-16' }
+      ]);
+    }
+    
+    if (tab === 'customers' && customers.length === 0) {
+      setCustomers([
+        { id: 1, name: 'John Doe', email: 'john@example.com', orders: 5 },
+        { id: 2, name: 'Jane Smith', email: 'jane@example.com', orders: 2 }
+      ]);
+    }
+  };
+
+  return (
+    <div className="admin-dashboard">
+      <header className="admin-header">
+        <h1>Cyber E-commerce</h1>
+        <h4>Admin Panel</h4>
+        <nav className="admin-nav">
+          <button 
+            className={activeTab === 'products' ? 'active' : ''}
+            onClick={() => handleTabChange('products')}
+          >
+            Products
+          </button>
+          <button 
+            className={activeTab === 'orders' ? 'active' : ''}
+            onClick={() => handleTabChange('orders')}
+          >
+            Orders
+          </button>
+          <button 
+            className={activeTab === 'customers' ? 'active' : ''}
+            onClick={() => handleTabChange('customers')}
+          >
+            Customers
+          </button>
         </nav>
-      </aside>
+      </header>
 
-      {/* Main Content */}
-      <main className="main-content">
-        {/* Top Navbar */}
-        <header className="top-navbar">
-          <h1>Admin Dashboard</h1>
-          <div className="admin-info">
-            <span>Admin</span>
-            <img
-              src="https://via.placeholder.com/30"
-              alt="Admin Avatar"
-              className="avatar"
-            />
+      <main className="admin-content">
+        {activeTab === 'products' && (
+          <div className="products-section">
+            <h2>Product Management</h2>
+            
+            <div className="product-form-container">
+              <form onSubmit={handleSubmit} className="product-form">
+                <h3>Add New Product</h3>
+                
+                <div className="form-group">
+                  <label>Product Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label>Price:</label>
+                  <input
+                    type="number"
+                    name="price"
+                    value={formData.price}
+                    onChange={handleInputChange}
+                    min="0"
+                    step="0.01"
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label>Category:</label>
+                  <input
+                    type="text"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label>Stock Quantity:</label>
+                  <input
+                    type="number"
+                    name="stock"
+                    value={formData.stock}
+                    onChange={handleInputChange}
+                    min="0"
+                    required
+                  />
+                </div>
+                
+                <div className="form-group checkbox-group">
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="featured"
+                      checked={formData.featured}
+                      onChange={handleInputChange}
+                    />
+                    Featured Product
+                  </label>
+                </div>
+                
+                <div className="form-group">
+                  <label>Product Images:</label>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleImageUpload}
+                    accept="image/*"
+                    multiple
+                  />
+                  <div className="image-preview-container">
+                    {images.map((img, index) => (
+                      <div key={index} className="image-preview">
+                        <img src={img.preview} alt={`Product preview ${index}`} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <button type="submit" className="submit-btn">Add Product</button>
+              </form>
+            </div>
+            
+            <div className="products-list">
+              <h3>Product List</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Stock</th>
+                    <th>Featured</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map(product => (
+                    <tr key={product.id}>
+                      <td>
+                        <div className="product-image">
+                          <img src={product.imagePreview} alt={product.name} />
+                        </div>
+                      </td>
+                      <td>{product.name}</td>
+                      <td>${product.price.toFixed(2)}</td>
+                      <td>{product.category}</td>
+                      <td>{product.stock}</td>
+                      <td>{product.featured ? 'Yes' : 'No'}</td>
+                      <td>
+                        <button className="edit-btn">Edit</button>
+                        <button 
+                          className="delete-btn"
+                          onClick={() => handleDeleteProduct(product.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </header>
+        )}
 
-        {/* Dashboard Cards */}
-        <section className="dashboard-cards">
-          <div className="card">
-            <h3>Products</h3>
-            <p>120</p>
+        {activeTab === 'orders' && (
+          <div className="orders-section">
+            <h2>Order Management</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map(order => (
+                  <tr key={order.id}>
+                    <td>{order.id}</td>
+                    <td>{order.customer}</td>
+                    <td>${order.total.toFixed(2)}</td>
+                    <td>
+                      <select defaultValue={order.status}>
+                        <option value="Processing">Processing</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                      </select>
+                    </td>
+                    <td>{order.date}</td>
+                    <td>
+                      <button className="view-btn">View Details</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className="card">
-            <h3>Orders</h3>
-            <p>86</p>
+        )}
+
+        {activeTab === 'customers' && (
+          <div className="customers-section">
+            <h2>Customer Management</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Total Orders</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {customers.map(customer => (
+                  <tr key={customer.id}>
+                    <td>{customer.id}</td>
+                    <td>{customer.name}</td>
+                    <td>{customer.email}</td>
+                    <td>{customer.orders}</td>
+                    <td>
+                      <button className="view-btn">View Profile</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className="card">
-            <h3>Users</h3>
-            <p>240</p>
-          </div>
-          <div className="card">
-            <h3>Revenue</h3>
-            <p>$10,200</p>
-          </div>
-        </section>
+        )}
       </main>
     </div>
-        </>
-    )
-}
+  );
+};
 
-export default Admin;
+export default EcommerceAdmin;

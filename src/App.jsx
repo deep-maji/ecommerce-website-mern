@@ -3,7 +3,7 @@ import './App.css'
 import Home from './components/Home'
 import Sign from './components/Sign'
 import Login from './components/Login'
-import Admin from './components/Admin'
+import EcommerceAdmin from './components/Admin'
 import ProductPage from './components/Adminproducts'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ function App() {
           <Route path='/' element={<Home/>}></Route>
           <Route path='/sign' element={<Sign/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
-          <Route path='/admin' element={<Admin/>}></Route>
+          <Route path='/admin' element={<EcommerceAdmin/>}></Route>
           <Route path='/admin/pro' element={<ProductPage/>}></Route>
         </Routes>
       </Router>
