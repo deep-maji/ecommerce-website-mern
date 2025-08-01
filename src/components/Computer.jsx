@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import iphone14pro1 from '../assets/images/iphone14pro1.svg';
 import '../styles/CategoryCard.css'
 
-export const Phone = () => {
+export const Computer = () => {
   return (
     <>
       <Navbar />
@@ -26,7 +26,7 @@ export const Phone = () => {
             <NavLink to={'/category/watch'}><img className='ccimgs-cate' src={CC5}></img></NavLink>
           </div>
           <div id="cate-right" className="container-fluid">
-            <h5>Phones</h5>
+            <h5>Computers</h5>
             <div className="row">
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
@@ -117,4 +117,4 @@ export const Phone = () => {
   )
 }
 
-export default Phone;
+export default Computer;

@@ -6,6 +6,10 @@ import Login from './components/Login'
 import EcommerceAdmin from './components/Admin'
 import Phone from './components/Phone'
 import Headphone from './components/HeadPhone'
+import Gaming from './components/Gaming'
+import Computer from './components/Computer'
+import Watch from './components/Watch'
+import Camera from './components/Camera'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -20,6 +24,10 @@ function App() {
           <Route path='/admin' element={<EcommerceAdmin/>}></Route>
           <Route path='/category/phone' element={<Phone/>}></Route>
           <Route path='/category/headphone' element={<Headphone/>}></Route>
+          <Route path='/category/gaming' element={<Gaming/>}></Route>
+          <Route path='/category/camera' element={<Camera/>}></Route>
+          <Route path='/category/computer' element={<Computer/>}></Route>
+          <Route path='/category/watch' element={<Watch/>}></Route>
           
         </Routes>
       </Router>

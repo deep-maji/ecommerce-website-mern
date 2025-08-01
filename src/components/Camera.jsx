@@ -7,10 +7,10 @@ import CC3 from '../assets/images/CC3.svg'
 import CC4 from '../assets/images/CC4.svg'
 import CC5 from '../assets/images/CC5.svg'
 import { NavLink } from "react-router-dom";
-import iphone14pro1 from '../assets/images/iphone14pro1.svg';
+import camera1 from '../assets/images/camera1.png';
 import '../styles/CategoryCard.css'
 
-export const Phone = () => {
+export const Camera = () => {
   return (
     <>
       <Navbar />
@@ -26,18 +26,18 @@ export const Phone = () => {
             <NavLink to={'/category/watch'}><img className='ccimgs-cate' src={CC5}></img></NavLink>
           </div>
           <div id="cate-right" className="container-fluid">
-            <h5>Phones</h5>
+            <h5>Cameras</h5>
             <div className="row">
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
                   <div id="card-img">
-                    <img src={iphone14pro1}></img>
+                    <img src={camera1}></img>
                   </div>
                   <div id="card-title">
-                    <p>Apple iPhone 14 Pro 512GB Gold</p>
+                    <p>Sony Alpha ILCE-7M4K Full-Frame Hybrid Camera 33MP Interchangeable-Lens Mirrorless Camera</p>
                   </div>
                   <div id="card-price">
-                    <p>1437</p>
+                    <p>2,30,989</p>
                   </div>
                   <div id="card-btn">
                     <button>Buy Now</button>
@@ -47,13 +47,13 @@ export const Phone = () => {
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
                   <div id="card-img">
-                    <img src={iphone14pro1}></img>
+                    <img src={camera1}></img>
                   </div>
                   <div id="card-title">
-                    <p>Apple iPhone 14 Pro 512GB Gold</p>
+                    <p>Sony Alpha ILCE-7M4K Full-Frame Hybrid Camera 33MP Interchangeable-Lens Mirrorless Camera</p>
                   </div>
                   <div id="card-price">
-                    <p>1437</p>
+                    <p>2,30,989</p>
                   </div>
                   <div id="card-btn">
                     <button>Buy Now</button>
@@ -63,13 +63,13 @@ export const Phone = () => {
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
                   <div id="card-img">
-                    <img src={iphone14pro1}></img>
+                    <img src={camera1}></img>
                   </div>
                   <div id="card-title">
-                    <p>Apple iPhone 14 Pro 512GB Gold</p>
+                    <p>Sony Alpha ILCE-7M4K Full-Frame Hybrid Camera 33MP Interchangeable-Lens Mirrorless Camera</p>
                   </div>
                   <div id="card-price">
-                    <p>1437</p>
+                    <p>2,30,989</p>
                   </div>
                   <div id="card-btn">
                     <button>Buy Now</button>
@@ -79,13 +79,13 @@ export const Phone = () => {
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
                   <div id="card-img">
-                    <img src={iphone14pro1}></img>
+                    <img src={camera1}></img>
                   </div>
                   <div id="card-title">
-                    <p>Apple iPhone 14 Pro 512GB Gold</p>
+                    <p>Sony Alpha ILCE-7M4K Full-Frame Hybrid Camera 33MP Interchangeable-Lens Mirrorless Camera</p>
                   </div>
                   <div id="card-price">
-                    <p>1437</p>
+                    <p>2,30,989</p>
                   </div>
                   <div id="card-btn">
                     <button>Buy Now</button>
@@ -95,13 +95,13 @@ export const Phone = () => {
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
                   <div id="card-img">
-                    <img src={iphone14pro1}></img>
+                    <img src={camera1}></img>
                   </div>
                   <div id="card-title">
-                    <p>Apple iPhone 14 Pro 512GB Gold</p>
+                    <p>Sony Alpha ILCE-7M4K Full-Frame Hybrid Camera 33MP Interchangeable-Lens Mirrorless Camera</p>
                   </div>
                   <div id="card-price">
-                    <p>1437</p>
+                    <p>2,30,989</p>
                   </div>
                   <div id="card-btn">
                     <button>Buy Now</button>
@@ -117,4 +117,4 @@ export const Phone = () => {
   )
 }
 
-export default Phone;
+export default Camera;

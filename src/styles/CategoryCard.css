@@ -11,7 +11,7 @@ p {
     flex-direction: column;
 
     img {
-        width: 10vw;
+        width: 12vw;
         padding: 0rem 1rem;
         padding-bottom: 0.5rem;
     }
@@ -26,6 +26,12 @@ p {
 
 #cate-right {
     width: 100%;
+
+    h5 {
+        padding: 0.5rem 0;
+        padding-bottom: 1rem;
+        font-size: 2vw;
+    }
 }
 
 #card {
@@ -37,17 +43,34 @@ p {
     align-items: center;
     flex-direction: column;
     margin-bottom: 1rem;
+
     p {
         margin-bottom: 0.5rem;
     }
 }
+
 #card-img {
     text-align: center;
     margin-bottom: 0.5rem;
+
     img {
         width: 120px;
     }
 }
+
+#card-title {
+    text-align: center;
+    font-weight: 500;
+}
+
+#card-price {
+    font-size: 1.2rem;
+}
+
+#card-price p::before {
+    content: "₹";
+}
+
 #card-btn {
     button {
         padding: 0.5rem 1rem;
@@ -58,11 +81,54 @@ p {
     }
 }
 
+@media (max-width: 992px) {
+    #cate-left {
+        img {
+            width: 21vw;
+            padding: 0.5rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #cate-left {
+        img {
+            width: 21vw;
+            padding: 0.5rem;
+        }
+    }
+}
+
 @media (max-width: 450px) {
     #cate-left {
         img {
-            width: 6rem;
+            width: 27vw;
             padding: 0.5rem;
+        }
+    }
+}
+
+
+@media (max-width: 350px) {
+    #cate-left {
+        img {
+            width: 30vw;
+            padding: 0.5rem;
+        }
+
+        h4 {
+            text-align: center;
+            padding: 0;
+            padding-bottom: 1rem;
+            font-size: 5vw;
+        }
+    }
+
+    #cate-right {
+        h5 {
+            padding: 0;
+            padding-bottom: 1rem;
+            font-size: 6vw;
         }
     }
 }
