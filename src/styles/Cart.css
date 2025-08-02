@@ -1,6 +1,6 @@
 #cart-Wraper {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     padding: 7vw 5vw;
     display: flex;
 }
@@ -21,6 +21,7 @@
     padding-bottom: 1rem;
     padding-top: 1rem;
     border-bottom: 1px solid black;
+    margin-right: 8rem;
 }
 
 #cart-img {
@@ -46,7 +47,8 @@
 
     input {
         width: 50px;
-        border: 0;
+        border: 1px solid black;
+        border-radius: 2px;
         padding: 0rem 0.5rem;
     }
 
@@ -58,7 +60,9 @@
     button {
         padding: 0px 10px;
         border: 0;
-
+        padding-bottom: 4.5px;
+        font-weight: 700;
+        border-radius: 5px;
     }
 }
 
@@ -78,6 +82,7 @@
     margin-left: 1rem;
     font-weight: 300;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 #cart-right {
@@ -91,14 +96,20 @@
         padding: 0;
     }
 
+    #cart-card {
+        margin-right: 0;
+        justify-content: start;
+    }
+
     #cart-left {
         width: 100%;
     }
 
     #cart-img {
         img {
-            width: 4rem;
-            margin-right: 1rem;
+            width: 5.5rem;
+            margin-right: 0;
+            margin-left: 1rem;
         }
     }
 
@@ -108,7 +119,7 @@
 
     #cart-des {
         flex-direction: column;
-        margin-left: 1.5rem;
+        margin-left: 3rem;
     }
 
     #cart-qaun {
@@ -129,4 +140,57 @@
     #cart-right {
         width: 100%;
     }
+}
+
+/* Order summary container */
+.order-summary {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+}
+
+/* Title styling */
+.order-summary h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Input styling */
+.order-summary input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button styling */
+.order-summary button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Button hover effect */
+.order-summary button:hover {
+    background-color: #333;
+}
+
+/* Price info styling */
+.price-info {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Price title styling */
+.price-info div {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
 }
