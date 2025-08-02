@@ -34,9 +34,9 @@ export const Navbar = () => {
             <a href="#" className="action-btn"><div>Blog</div></a>
           </div>
           <div id="user-actions">
-            {/* <div id="wish" className="user-actions-btns">
+            <div id="wish" className="user-actions-btns">
               <a href="#"><img src={Fav} alt="fav"></img></a>
-            </div> */}
+            </div>
             <div id="cart" className="user-actions-btns">
               <a href="#"><img src={Cart} alt="cart"></img></a>
             </div>
