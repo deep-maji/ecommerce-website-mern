@@ -17,17 +17,17 @@ export const Login = () => {
               <div className='lg'>
                 <label htmlFor='email'>Email</label>
                 <div className='in-div'>
-                  <input id='email' type='email' placeholder='Enter email'></input>
+                  <input className='Ls-int' id='email' type='email' placeholder='Enter email'></input>
                 </div>
               </div>
               <div className='lg'>
                 <label htmlFor='password'>Password</label>
                 <div className='in-div'>
-                  <input id='password' type='password' placeholder='Enter password'></input>
+                  <input className='Ls-int' id='password' type='password' placeholder='Enter password'></input>
                 </div>
               </div>
               <div id='btn-div'>
-                <button type='submit'>Login</button>
+                <button className='Ls-int' type='submit'>Login</button>
               </div>
             </form>
             <NavLink to={"/sign"} className="ls-link">create new account</NavLink>

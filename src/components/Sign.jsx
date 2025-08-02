@@ -17,23 +17,23 @@ export const Sign = () => {
               <div className='lg'>
                 <label htmlFor='name'>Name</label>
                 <div className='in-div'>
-                  <input id='name' type='text' placeholder='Enter name'></input>
+                  <input className='Ls-int' id='name' type='text' placeholder='Enter name'></input>
                 </div>
               </div>
               <div className='lg'>
                 <label htmlFor='email'>Email</label>
                 <div className='in-div'>
-                  <input id='email' type='email' placeholder='Enter email'></input>
+                  <input className='Ls-int' id='email' type='email' placeholder='Enter email'></input>
                 </div>
               </div>
               <div className='lg'>
                 <label htmlFor='password'>Password</label>
                 <div className='in-div'>
-                  <input id='password' type='password' placeholder='Enter password'></input>
+                  <input className='Ls-int' id='password' type='password' placeholder='Enter password'></input>
                 </div>
               </div>
               <div id='btn-div'>
-                <button type='submit'>Sign up</button>
+                <button className='Ls-int' type='submit'>Sign up</button>
               </div>
             </form>
             <NavLink to={"/login"} className="ls-link">Login <span className="subtext">existing-customer</span></NavLink>

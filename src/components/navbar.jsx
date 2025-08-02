@@ -38,7 +38,7 @@ export const Navbar = () => {
               <a href="#"><img src={Fav} alt="fav"></img></a>
             </div>
             <div id="cart" className="user-actions-btns">
-              <a href="#"><img src={Cart} alt="cart"></img></a>
+              <NavLink to={'/cart'}><img src={Cart} alt="cart"></img></NavLink>
             </div>
             <div id="user" className="user-actions-btns">
               <NavLink to={'/sign'}><img src={User} alt="user"></img></NavLink>

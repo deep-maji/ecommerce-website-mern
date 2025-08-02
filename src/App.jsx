@@ -10,6 +10,7 @@ import Gaming from './components/Gaming'
 import Computer from './components/Computer'
 import Watch from './components/Watch'
 import Camera from './components/Camera'
+import Cart from './components/Cart'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path='/category/camera' element={<Camera/>}></Route>
           <Route path='/category/computer' element={<Computer/>}></Route>
           <Route path='/category/watch' element={<Watch/>}></Route>
+          <Route path='/cart' element={<Cart/>}></Route>
           
         </Routes>
       </Router>
