@@ -3,8 +3,20 @@ import Footer from './footer';
 import iphone14pro1 from '../assets/images/iphone14pro1.svg';
 import '../styles/Cart.css';
 import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
 
 export const Cart = () => {
+  const [count, setCount] = useState(0);
+
+  const increase = (e) => {
+    setCount(count + 1);
+    const parent = e.target.parentElement;
+  };
+
+  const removeItem = (e) => {
+    let parentElement = e.target.parentElement.parentElement;
+    parentElement.remove();
+  }
   return (
     <>
       <Navbar />
@@ -25,13 +37,13 @@ export const Cart = () => {
                   </div>
                   <div id='cart-qaun'>
                     <button>-</button>
-                    <input type='number'></input>
-                    <button>+</button>
+                    <input type='number' ></input>
+                    <button onClick={increase}>+</button>
                   </div>
                   <div id='cart-price'>
                     <p>456</p>
                   </div>
-                  <div id='cart-remove'>Remove</div>
+                  <div id='cart-remove' onClick={removeItem}>Remove</div>
                 </div>
               </div>
               <div id='cart-card'>
@@ -56,13 +68,10 @@ export const Cart = () => {
             </div>
           </div>
           <div id='cart-right'>
-
             <div className="order-summary-container" role="region" aria-label="Order Summary">
               <h2 className="title">Order Summary</h2>
-
               <form
-                className="promo-card-form"
-              >
+                className="promo-card-form">
                 <label htmlFor="promoCode" className="label">
                   Discount code / Promo code
                 </label>
@@ -75,7 +84,7 @@ export const Cart = () => {
                   placeholder="Code"
                 />
                 <br></br>
-
+                
                 <label htmlFor="bonusCard" className="label bonus-label">
                   Your bonus card number
                 </label>
@@ -101,19 +110,19 @@ export const Cart = () => {
               <div className="summary-details" aria-live="polite">
                 <div className="summary-row subtotal">
                   <span>Subtotal</span>
-                  <span>${}</span>
+                  <span>₹{}</span>
                 </div>
                 <div className="summary-row">
                   <span>Estimated Tax</span>
-                  <span>${}</span>
+                  <span>₹{}</span>
                 </div>
                 <div className="summary-row">
                   <span>Estimated shipping &amp; Handling</span>
-                  <span>${}</span>
+                  <span>₹{}</span>
                 </div>
-                <div className="summary-row total">
+                <div className="summary-row subtotal">
                   <span>Total</span>
-                  <span>${}</span>
+                  <span>₹{}</span>
                 </div>
               </div>
 
@@ -121,9 +130,6 @@ export const Cart = () => {
                 Checkout
               </button>
             </div>
-
-
-
 
           </div>
         </div>
