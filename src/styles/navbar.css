@@ -84,7 +84,7 @@ nav #user-actions {
 
 #burger-menu {
     display: none;
-    
+    cursor: pointer;
 }
 
 
@@ -112,4 +112,34 @@ nav #user-actions {
     nav #user-actions {
         width: 15vw;
     }
+}
+
+#burger-menu-open {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 100%;
+    z-index: 9;
+    background-color: #eee;
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+#burger-menu-close {
+    font-size: 5vw;
+    display: flex;
+    justify-content: end;
+    padding: 1rem 2rem;
+    position: absolute;
+    right: 0;
+}
+
+#burger-menu-actions {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }

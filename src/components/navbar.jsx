@@ -8,8 +8,26 @@ import Burger from "../assets/images/Burger.svg";
 import "../styles/navbar.css";
 
 export const Navbar = () => {
+  const openMenu = (e) => {
+    document.querySelector("#burger-menu-open").style.right = "0";
+    console.log(e.target);
+  }
+
+  const closeMenu = (e) => {
+    document.querySelector("#burger-menu-open").style.right = `${-100}%`;
+  }
+  
   return (
     <>
+      <div id="burger-menu-open">
+        <div id="burger-menu-close" onClick={closeMenu}>X</div>
+        <div id="burger-menu-actions">
+            <NavLink to={"/"} className="action-btn nav-active"><div>Home</div></NavLink>
+            <a href="#" className="action-btn"><div>About</div></a>
+            <a href="#" className="action-btn"><div>Contact Us</div></a>
+            <a href="#" className="action-btn"><div>Blog</div></a>
+          </div>
+      </div>
       <header>
         <nav>
           <div id="logo">
@@ -44,7 +62,7 @@ export const Navbar = () => {
               <NavLink to={'/sign'}><img src={User} alt="user"></img></NavLink>
             </div>
           </div>
-          <div id="burger-menu">
+          <div id="burger-menu" onClick={openMenu}>
             <img src={Burger} alt="menu"></img>
           </div>
         </nav>
