@@ -30,7 +30,7 @@ export const Login = () => {
                 <button className='Ls-int' type='submit'>Login</button>
               </div>
             </form>
-            <NavLink to={"/sign"} className="ls-link">create new account</NavLink>
+            <NavLink to={"/sign"} className="ls-link">Don't have an account? Sign up</NavLink>
           </div>
         </div>
       </div>

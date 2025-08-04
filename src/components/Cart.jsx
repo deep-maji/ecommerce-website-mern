@@ -62,7 +62,7 @@ export const Cart = () => {
                   <div id='cart-price'>
                     <p>456</p>
                   </div>
-                  <div id='cart-remove'>Remove</div>
+                  <div id='cart-remove' onClick={removeItem}>Remove</div>
                 </div>
               </div>
             </div>
