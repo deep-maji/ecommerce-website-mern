@@ -79,7 +79,7 @@ export const Login = () => {
                 <button className='Ls-int' type='submit'>Login</button>
               </div>
             </form>
-            <NavLink to={"/sign"} className="ls-link">
+            <NavLink to={"/users/signup"} className="ls-link">
               Don't have an account? Sign up
             </NavLink>
           </div>

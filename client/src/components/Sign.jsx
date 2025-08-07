@@ -80,7 +80,7 @@ export const Sign = () => {
                 <button  className='Ls-int' type='submit'>Sign up</button>
               </div>
             </form>
-            <NavLink to={"/login"} className="ls-link">Login <span className="subtext">existing-customer</span></NavLink>
+            <NavLink to={"/users/login"} className="ls-link">Login <span className="subtext">existing-customer</span></NavLink>
           </div>
         </div>
       </div>

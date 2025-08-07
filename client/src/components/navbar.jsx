@@ -59,7 +59,7 @@ export const Navbar = () => {
               <NavLink to={'/cart'}><img src={Cart} alt="cart"></img></NavLink>
             </div>
             <div id="user" className="user-actions-btns">
-              <NavLink to={'/sign'}><img src={User} alt="user"></img></NavLink>
+              <NavLink to={'/users/signup'}><img src={User} alt="user"></img></NavLink>
             </div>
           </div>
           <div id="burger-menu" onClick={openMenu}>

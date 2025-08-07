@@ -20,8 +20,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home/>}></Route>
-          <Route path='/sign' element={<Sign/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/users/signup' element={<Sign/>}></Route>
+          <Route path='/users/login' element={<Login/>}></Route>
           <Route path='/admin' element={<EcommerceAdmin/>}></Route>
           <Route path='/category/phone' element={<Phone/>}></Route>
           <Route path='/category/headphone' element={<Headphone/>}></Route>
