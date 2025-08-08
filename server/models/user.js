@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6
+    minlength: 6,
+    required: true,
   },
   phone: {
     type: String
@@ -32,11 +33,17 @@ const userSchema = new mongoose.Schema({
     default: false
   },
   cart: [
-    {
-      productId: mongoose.Schema.Types.ObjectId,
-      quantity: { type: Number, default: 1 }
+  {
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    },
+    quantity: {
+      type: Number,
+      default: 1
     }
-  ],
+  }
+ ],
   orders: [
     {
       orderId: mongoose.Schema.Types.ObjectId,
@@ -49,4 +56,5 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-export const User = mongoose.model('user', userSchema);
+const User = mongoose.model('user', userSchema);
+export default User;
