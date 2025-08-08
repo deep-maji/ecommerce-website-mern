@@ -1,0 +1,23 @@
+.user-dashboard .list-group-item {
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.list-group-item {
+    background-color: #fff;
+    color: #000;
+}
+
+.user-dashboard .card {
+    border-radius: 10px;
+}
+
+.user-dashboard table {
+    font-size: 0.95rem;
+}
+
+.user-dashboard .badge {
+    padding: 0.5em 0.7em;
+    font-size: 0.8rem;
+}
