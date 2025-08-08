@@ -11,6 +11,8 @@ import Computer from './components/Computer'
 import Watch from './components/Watch'
 import Camera from './components/Camera'
 import Cart from './components/Cart'
+import User from './components/User'
+import AdminLogin from './components/AdminSignUp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -22,7 +24,8 @@ function App() {
           <Route path='/' element={<Home/>}></Route>
           <Route path='/users/signup' element={<Sign/>}></Route>
           <Route path='/users/login' element={<Login/>}></Route>
-          <Route path='/admin' element={<EcommerceAdmin/>}></Route>
+          <Route path='/admin' element={<AdminLogin/>}></Route>
+          <Route path='/admin/user' element={<EcommerceAdmin/>}></Route>
           <Route path='/category/phone' element={<Phone/>}></Route>
           <Route path='/category/headphone' element={<Headphone/>}></Route>
           <Route path='/category/gaming' element={<Gaming/>}></Route>
@@ -30,6 +33,7 @@ function App() {
           <Route path='/category/computer' element={<Computer/>}></Route>
           <Route path='/category/watch' element={<Watch/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
+          <Route path='/users/user' element={<User/>}></Route>
           
         </Routes>
       </Router>
