@@ -77,10 +77,10 @@ export const Sign = () => {
                 </div>
               </div>
               <div id='btn-div'>
-                <button  className='Ls-int' type='submit'>Sign up</button>
+                <NavLink to={'/users/user'}><button  className='Ls-int' type='submit'>Sign up</button></NavLink>
               </div>
             </form>
-            <NavLink to={"/login"} className="ls-link">Login <span className="subtext">existing-customer</span></NavLink>
+            <NavLink to={"/users/login"} className="ls-link">Login <span className="subtext">existing-customer</span></NavLink>
           </div>
         </div>
       </div>

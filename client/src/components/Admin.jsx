@@ -99,7 +99,7 @@ const EcommerceAdmin = () => {
         { id: 2, customer: 'Jane Smith', total: 299.98, status: 'Processing', date: '2023-05-16' }
       ]);
     }
-    
+
     if (tab === 'customers' && customers.length === 0) {
       setCustomers([
         { id: 1, name: 'John Doe', email: 'john@example.com', orders: 5 },
@@ -111,22 +111,29 @@ const EcommerceAdmin = () => {
   return (
     <div className="admin-dashboard">
       <header className="admin-header">
-        <h1>Cyber E-commerce</h1>
-        <h4>Admin Panel</h4>
+        <div style={{display:"flex", justifyContent:'space-between'}}>
+          <div>
+            <h1>Cyber E-commerce</h1>
+            <h4>Admin Panel</h4>
+          </div>
+          <div>
+            <h5 style={{cursor:'pointer'}}>Log out</h5>
+          </div>
+        </div>
         <nav className="admin-nav">
-          <button 
+          <button
             className={activeTab === 'products' ? 'active' : ''}
             onClick={() => handleTabChange('products')}
           >
             Products
           </button>
-          <button 
+          <button
             className={activeTab === 'orders' ? 'active' : ''}
             onClick={() => handleTabChange('orders')}
           >
             Orders
           </button>
-          <button 
+          <button
             className={activeTab === 'customers' ? 'active' : ''}
             onClick={() => handleTabChange('customers')}
           >
@@ -139,11 +146,11 @@ const EcommerceAdmin = () => {
         {activeTab === 'products' && (
           <div className="products-section">
             <h2>Product Management</h2>
-            
+
             <div className="product-form-container">
               <form onSubmit={handleSubmit} className="product-form">
                 <h3>Add New Product</h3>
-                
+
                 <div className="form-group">
                   <label>Product Name:</label>
                   <input
@@ -154,7 +161,7 @@ const EcommerceAdmin = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label>Price:</label>
                   <input
@@ -167,7 +174,7 @@ const EcommerceAdmin = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label>Category:</label>
                   <input
@@ -178,7 +185,7 @@ const EcommerceAdmin = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label>Stock Quantity:</label>
                   <input
@@ -190,7 +197,7 @@ const EcommerceAdmin = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="form-group checkbox-group">
                   <label>
                     <input
@@ -202,7 +209,7 @@ const EcommerceAdmin = () => {
                     Featured Product
                   </label>
                 </div>
-                
+
                 <div className="form-group">
                   <label>Product Images:</label>
                   <input
@@ -220,11 +227,11 @@ const EcommerceAdmin = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <button type="submit" className="submit-btn">Add Product</button>
               </form>
             </div>
-            
+
             <div className="products-list">
               <h3>Product List</h3>
               <table>
@@ -254,7 +261,7 @@ const EcommerceAdmin = () => {
                       <td>{product.featured ? 'Yes' : 'No'}</td>
                       <td>
                         <button className="edit-btn">Edit</button>
-                        <button 
+                        <button
                           className="delete-btn"
                           onClick={() => handleDeleteProduct(product.id)}
                         >
