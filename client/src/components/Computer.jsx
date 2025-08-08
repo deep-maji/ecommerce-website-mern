@@ -15,9 +15,11 @@ export const Computer = () => {
     <>
       <Navbar />
       <main>
+        <div id="cate-noti">
+          <h4>Category - Computers</h4>
+        </div>
         <div id="Products">
           <div id="cate-left">
-            <h4>Category</h4>
             <NavLink to={'/category/phone'}><img className='ccimgs-cate' src={CC0}></img></NavLink>
             <NavLink to={'/category/headphone'}><img className='ccimgs-cate' src={CC1}></img></NavLink>
             <NavLink to={'/category/gaming'}><img className='ccimgs-cate' src={CC2}></img></NavLink>
@@ -26,7 +28,6 @@ export const Computer = () => {
             <NavLink to={'/category/watch'}><img className='ccimgs-cate' src={CC5}></img></NavLink>
           </div>
           <div id="cate-right" className="container-fluid">
-            <h5>Computers</h5>
             <div className="row">
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
