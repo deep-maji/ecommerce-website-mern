@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Admin.css'
 
 const EcommerceAdmin = () => {
@@ -107,6 +107,13 @@ const EcommerceAdmin = () => {
       ]);
     }
   };
+
+  useEffect(() => {
+    fetch("http://localhost:3000/product")
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error("Error fetching products:", err));
+  }, []);
 
   return (
     <div className="admin-dashboard">
