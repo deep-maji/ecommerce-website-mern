@@ -3,7 +3,8 @@ import Product from '../models/product.js';
 
 export const addToCart = async (req, res) => {
   try {
-    const { userId, productId, quantity } = req.body;
+    const userId = req.params.userId
+    const { productId, quantity } = req.body;
 
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ msg: "User not found" });
