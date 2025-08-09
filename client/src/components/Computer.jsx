@@ -1,5 +1,6 @@
 import Navbar from "./navbar";
 import Footer from "./footer";
+import { useState } from "react";
 import CC0 from '../assets/images/CC0.svg'
 import CC1 from '../assets/images/CC1.svg'
 import CC2 from '../assets/images/CC2.svg'
@@ -11,10 +12,20 @@ import iphone14pro1 from '../assets/images/iphone14pro1.svg';
 import '../styles/CategoryCard.css'
 
 export const Computer = () => {
+  const [visible, setVisible] = useState(false);
+
+  const showCartNoti = () => {
+    setVisible(true);
+
+    setTimeout(() => {
+      setVisible(false);
+    }, 2000);
+  };
   return (
     <>
       <Navbar />
       <main>
+        <div id="add-to-cart-noti" className={visible ? "show" : ""}>1 item is added to cart</div>
         <div id="cate-noti">
           <h4>Category - Computers</h4>
         </div>
@@ -41,7 +52,7 @@ export const Computer = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -57,7 +68,7 @@ export const Computer = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -73,7 +84,7 @@ export const Computer = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -89,7 +100,7 @@ export const Computer = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -105,7 +116,7 @@ export const Computer = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import Navbar from "./navbar";
+import { useState } from "react";
 import Footer from "./footer";
 import CC0 from '../assets/images/CC0.svg'
 import CC1 from '../assets/images/CC1.svg'
@@ -11,10 +12,20 @@ import ps51 from '../assets/images/ps51.png';
 import '../styles/CategoryCard.css'
 
 export const Gaming = () => {
+  const [visible, setVisible] = useState(false);
+
+  const showCartNoti = () => {
+    setVisible(true);
+
+    setTimeout(() => {
+      setVisible(false);
+    }, 2000);
+  };
   return (
     <>
       <Navbar />
       <main>
+        <div id="add-to-cart-noti" className={visible ? "show" : ""}>1 item is added to cart</div>
         <div id="cate-noti">
           <h4>Category - Gaming</h4>
         </div>
@@ -41,7 +52,7 @@ export const Gaming = () => {
                     <p>52,490</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -57,7 +68,7 @@ export const Gaming = () => {
                     <p>52,490</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -73,7 +84,7 @@ export const Gaming = () => {
                     <p>52,490</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -89,7 +100,7 @@ export const Gaming = () => {
                     <p>52,490</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -105,7 +116,7 @@ export const Gaming = () => {
                     <p>52,490</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
