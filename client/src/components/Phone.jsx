@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import CC0 from '../assets/images/CC0.svg'
@@ -11,13 +12,26 @@ import iphone14pro1 from '../assets/images/iphone14pro1.svg';
 import '../styles/CategoryCard.css'
 
 export const Phone = () => {
+  const [visible, setVisible] = useState(false);
+
+  const showCartNoti = () => {
+    setVisible(true);
+
+    setTimeout(() => {
+      setVisible(false);
+    }, 2000);
+  };
+  
   return (
     <>
       <Navbar />
       <main>
+      <div id="add-to-cart-noti" className={visible ? "show" : ""}>1 item is added to cart</div>
+        <div id="cate-noti">
+          <h4>Category - Phone</h4>
+        </div>
         <div id="Products">
           <div id="cate-left">
-            <h4>Category</h4>
             <NavLink to={'/category/phone'}><img className='ccimgs-cate' src={CC0}></img></NavLink>
             <NavLink to={'/category/headphone'}><img className='ccimgs-cate' src={CC1}></img></NavLink>
             <NavLink to={'/category/gaming'}><img className='ccimgs-cate' src={CC2}></img></NavLink>
@@ -26,7 +40,6 @@ export const Phone = () => {
             <NavLink to={'/category/watch'}><img className='ccimgs-cate' src={CC5}></img></NavLink>
           </div>
           <div id="cate-right" className="container-fluid">
-            <h5>Phones</h5>
             <div className="row">
               <div className="col-lg-3 col-md-6 col-12">
                 <div id="card">
@@ -40,7 +53,7 @@ export const Phone = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -56,7 +69,7 @@ export const Phone = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -72,7 +85,7 @@ export const Phone = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -88,7 +101,7 @@ export const Phone = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>
@@ -104,7 +117,7 @@ export const Phone = () => {
                     <p>1437</p>
                   </div>
                   <div id="card-btn">
-                    <button>Buy Now</button>
+                    <button onClick={showCartNoti}>Buy Now</button>
                   </div>
                 </div>
               </div>

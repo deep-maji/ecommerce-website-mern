@@ -1,16 +1,18 @@
 import React from "react";
 import "../styles/Footer.css";
-
 import Twitter  from "../assets/icons/Twitter.svg";
 import Facebook from "../assets/icons/Facebook.svg";
 import Tiktok from "../assets/icons/Tiktok.svg";
 import Instagram  from "../assets/icons/Instagram.svg";
+import Logo from "../assets/images/Logo.svg";
+import { NavLink } from "react-router-dom";
+
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer-column brand">
-        <h2><a to="/">shopwise</a></h2>
+        <h2><NavLink to="/"><img src={Logo}></img></NavLink></h2>
         <p>
           Shopwise is your trusted e-commerce destination for quality products.
         </p>
