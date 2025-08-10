@@ -40,14 +40,39 @@ const EcommerceAdmin = () => {
   };
 
   // Handle delete product
-  const handleDeleteProduct = async (id) => {
+  const handleDeleteProduct = async (index) => {
     try {
-      await axios.delete(`http://localhost:3000/product/${id}`);
-      setProducts(products.filter(product => product.id !== id));
+      // Get the product from current state
+      const productToDelete = products[index];
+
+      if (!productToDelete) {
+        console.error("No product found at this index:", index);
+        return;
+      }
+
+      // If the product has no id, fetch and match by index
+      let productId = productToDelete.id;
+      if (!productId) {
+        const res = await axios.get("http://localhost:3000/product");
+        if (res.data[index]) {
+          productId = res.data[index]['_id'];
+        } else {
+          console.error("No matching product found on server at this index:", index);
+          return;
+        }
+      }
+
+      // Delete from backend
+      await axios.delete(`http://localhost:3000/admin/product/${productId}`);
+
+      // Remove from state
+      setProducts(products.filter((_, i) => i !== index));
     } catch (err) {
-      console.error('Error deleting product:', err);
+      console.error("Error deleting product:", err);
     }
   };
+
+
 
   // Handle edit click
   const handleEditClick = (product) => {
@@ -217,7 +242,7 @@ const EcommerceAdmin = () => {
                 </thead>
                 <tbody>
                   {products.map((product, index) => (
-                    <tr key={product.id || index}>
+                    <tr key={product.id || index} id={product.id}>
                       <td><div className="product-image"><img src={product.image || product.imagePreview} alt={product.name} /></div></td>
                       <td>{product.name}</td>
                       <td>₹{Number(product.price || 0).toFixed(2)}</td>
@@ -226,7 +251,13 @@ const EcommerceAdmin = () => {
                       <td>{product.featured ? 'Yes' : 'No'}</td>
                       <td>
                         <button className="edit-btn" onClick={() => handleEditClick(product)}>Edit</button>
-                        <button className="delete-btn" onClick={() => handleDeleteProduct(product.id)}>Delete</button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDeleteProduct(product.id || index)}
+                        >
+                          Delete
+                        </button>
+
                       </td>
                     </tr>
                   ))}
