@@ -30,3 +30,15 @@ export const addProduct = async (req, res) => {
     res.status(500).json({ msg: "Internal Server Error" });
   }
 }
+
+export const removeProduct = async (req, res) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.productId);
+    if (!deletedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json({ message: `Product ${deletedProduct.name} deleted successfully` });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+}
