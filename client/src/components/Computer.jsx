@@ -56,8 +56,8 @@ export const Computer = () => {
 
           <div id="cate-right" className="container-fluid">
             <div className="row">
-              {computers.map((product) => (
-                <div key={product.id} className="col-lg-3 col-md-6 col-12">
+              {computers.map((product, index) => (
+                <div key={product.id || index} className="col-lg-3 col-md-6 col-12">
                   <div id="card">
                     <div id="card-img">
                       <img src={product.image} alt={product.name} />

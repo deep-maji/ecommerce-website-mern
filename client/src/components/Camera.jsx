@@ -55,7 +55,7 @@ export const Camera = () => {
             <div className="row">
               {products.length > 0 ? (
                 products.map((product, index) => (
-                  <div key={index} className="col-lg-3 col-md-6 col-12">
+                  <div key={product.id || index} className="col-lg-3 col-md-6 col-12">
                     <div id="card">
                       <div id="card-img">
                         <img src={product.image} alt={product.name} />

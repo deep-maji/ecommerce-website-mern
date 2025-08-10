@@ -64,8 +64,8 @@ export const Gaming = () => {
           {/* Right side products */}
           <div id="cate-right" className="container-fluid">
             <div className="row">
-              {products.map((product) => (
-                <div className="col-lg-3 col-md-6 col-12" key={product.id}>
+              {products.map((product, index) => (
+                <div className="col-lg-3 col-md-6 col-12" key={product.id || index}>
                   <div id="card">
                     <div id="card-img">
                       <img src={product.image} alt={product.name} />
