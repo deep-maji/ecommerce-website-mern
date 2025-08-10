@@ -1,30 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import '../styles/Admin.css'
+import axios from 'axios';
+import '../styles/Admin.css';
 
 const EcommerceAdmin = () => {
-  // State for products
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Premium Smartphone',
-      price: 999.99,
-      category: 'Electronics',
-      stock: 50,
-      featured: true,
-      imagePreview: 'https://placehold.co/600x400?text=Smartphone'
-    },
-    {
-      id: 2,
-      name: 'Wireless Headphones',
-      price: 149.99,
-      category: 'Electronics',
-      stock: 100,
-      featured: false,
-      imagePreview: 'https://placehold.co/600x400?text=Headphones'
-    }
-  ]);
-
-  // State for form inputs
+  const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     price: '',
@@ -33,14 +12,15 @@ const EcommerceAdmin = () => {
     featured: false,
     imagePreview: ''
   });
-
   const [images, setImages] = useState([]);
   const [activeTab, setActiveTab] = useState('products');
   const [orders, setOrders] = useState([]);
   const [customers, setCustomers] = useState([]);
+  const [currentEditProduct, setCurrentEditProduct] = useState(null);
+
   const fileInputRef = useRef(null);
 
-  // Handle input changes
+  // Handle input change
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -56,22 +36,62 @@ const EcommerceAdmin = () => {
       file,
       preview: URL.createObjectURL(file)
     }));
-    setImages([...images, ...imagePreviews]);
+    setImages([...imagePreviews]);
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  // Handle delete product
+  const handleDeleteProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/product/${id}`);
+      setProducts(products.filter(product => product.id !== id));
+    } catch (err) {
+      console.error('Error deleting product:', err);
+    }
+  };
+
+  // Handle edit click
+  const handleEditClick = (product) => {
+    setCurrentEditProduct(product);
+    setFormData({
+      name: product.name,
+      price: product.price,
+      category: product.category,
+      stock: product.stock,
+      featured: product.featured,
+      imagePreview: product.image || ''
+    });
+    setImages(product.image ? [{ preview: product.image }] : []);
+    setActiveTab('products');
+  };
+
+  // Handle form submit (add or edit)
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newProduct = {
-      id: products.length + 1,
+
+    const productPayload = {
       name: formData.name,
       price: parseFloat(formData.price),
       category: formData.category,
       stock: parseInt(formData.stock),
-      featured: formData.featured,
-      imagePreview: images.length > 0 ? images[0].preview : 'https://placehold.co/600x400?text=No+Image'
+      image: images.length > 0 ? images[0].preview : 'https://placehold.co/600x400?text=No+Image'
     };
-    setProducts([...products, newProduct]);
+
+    try {
+      if (currentEditProduct) {
+        // Update existing product
+        const res = await axios.put(`http://localhost:3000/product/${currentEditProduct.id}`, productPayload);
+        setProducts(products.map(p => p.id === currentEditProduct.id ? res.data : p));
+        setCurrentEditProduct(null);
+      } else {
+        // Add new product
+        const res = await axios.post('http://localhost:3000/admin/product/add', productPayload);
+        setProducts([...products, res.data]);
+      }
+    } catch (err) {
+      console.error('Error saving product:', err);
+    }
+
+    // Reset form
     setFormData({
       name: '',
       price: '',
@@ -83,23 +103,15 @@ const EcommerceAdmin = () => {
     setImages([]);
   };
 
-  // Handle product deletion
-  const handleDeleteProduct = (id) => {
-    setProducts(products.filter(product => product.id !== id));
-  };
-
   // Handle tab change
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-
-    // Generate sample data when switching to orders/customers tabs
     if (tab === 'orders' && orders.length === 0) {
       setOrders([
         { id: 1, customer: 'John Doe', total: 149.99, status: 'Shipped', date: '2023-05-15' },
         { id: 2, customer: 'Jane Smith', total: 299.98, status: 'Processing', date: '2023-05-16' }
       ]);
     }
-
     if (tab === 'customers' && customers.length === 0) {
       setCustomers([
         { id: 1, name: 'John Doe', email: 'john@example.com', orders: 5 },
@@ -108,124 +120,72 @@ const EcommerceAdmin = () => {
     }
   };
 
+  // Fetch products from server
   useEffect(() => {
-    fetch("http://localhost:3000/product")
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error("Error fetching products:", err));
+    axios.get('http://localhost:3000/product')
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch(err => console.error('Error fetching products:', err));
   }, []);
 
   return (
     <div className="admin-dashboard">
       <header className="admin-header">
-        <div style={{display:"flex", justifyContent:'space-between'}}>
+        <div style={{ display: "flex", justifyContent: 'space-between' }}>
           <div>
             <h1>Cyber E-commerce</h1>
             <h4>Admin Panel</h4>
           </div>
           <div>
-            <h5 style={{cursor:'pointer'}}>Log out</h5>
+            <h5 style={{ cursor: 'pointer' }}>Log out</h5>
           </div>
         </div>
         <nav className="admin-nav">
-          <button
-            className={activeTab === 'products' ? 'active' : ''}
-            onClick={() => handleTabChange('products')}
-          >
-            Products
-          </button>
-          <button
-            className={activeTab === 'orders' ? 'active' : ''}
-            onClick={() => handleTabChange('orders')}
-          >
-            Orders
-          </button>
-          <button
-            className={activeTab === 'customers' ? 'active' : ''}
-            onClick={() => handleTabChange('customers')}
-          >
-            Customers
-          </button>
+          <button className={activeTab === 'products' ? 'active' : ''} onClick={() => handleTabChange('products')}>Products</button>
+          <button className={activeTab === 'orders' ? 'active' : ''} onClick={() => handleTabChange('orders')}>Orders</button>
+          <button className={activeTab === 'customers' ? 'active' : ''} onClick={() => handleTabChange('customers')}>Customers</button>
         </nav>
       </header>
 
       <main className="admin-content">
         {activeTab === 'products' && (
           <div className="products-section">
-            <h2>Product Management</h2>
-
+            <h2>{currentEditProduct ? 'Edit Product' : 'Product Management'}</h2>
             <div className="product-form-container">
               <form onSubmit={handleSubmit} className="product-form">
-                <h3>Add New Product</h3>
+                <h3>{currentEditProduct ? 'Edit Product' : 'Add New Product'}</h3>
 
                 <div className="form-group">
                   <label>Product Name:</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
                   <label>Price:</label>
-                  <input
-                    type="number"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleInputChange}
-                    min="0"
-                    step="0.01"
-                    required
-                  />
+                  <input type="number" name="price" value={formData.price} onChange={handleInputChange} min="0" step="0.01" required />
                 </div>
 
                 <div className="form-group">
                   <label>Category:</label>
-                  <input
-                    type="text"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <input type="text" name="category" value={formData.category} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
                   <label>Stock Quantity:</label>
-                  <input
-                    type="number"
-                    name="stock"
-                    value={formData.stock}
-                    onChange={handleInputChange}
-                    min="0"
-                    required
-                  />
+                  <input type="number" name="stock" value={formData.stock} onChange={handleInputChange} min="0" required />
                 </div>
 
                 <div className="form-group checkbox-group">
                   <label>
-                    <input
-                      type="checkbox"
-                      name="featured"
-                      checked={formData.featured}
-                      onChange={handleInputChange}
-                    />
+                    <input type="checkbox" name="featured" checked={formData.featured} onChange={handleInputChange} />
                     Featured Product
                   </label>
                 </div>
 
                 <div className="form-group">
                   <label>Product Images:</label>
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleImageUpload}
-                    accept="image/*"
-                    multiple
-                  />
+                  <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" multiple />
                   <div className="image-preview-container">
                     {images.map((img, index) => (
                       <div key={index} className="image-preview">
@@ -235,7 +195,9 @@ const EcommerceAdmin = () => {
                   </div>
                 </div>
 
-                <button type="submit" className="submit-btn">Add Product</button>
+                <button type="submit" className="submit-btn">
+                  {currentEditProduct ? 'Update Product' : 'Add Product'}
+                </button>
               </form>
             </div>
 
@@ -254,26 +216,17 @@ const EcommerceAdmin = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map(product => (
-                    <tr key={product.id}>
-                      <td>
-                        <div className="product-image">
-                          <img src={product.imagePreview} alt={product.name} />
-                        </div>
-                      </td>
+                  {products.map((product, index) => (
+                    <tr key={product.id || index}>
+                      <td><div className="product-image"><img src={product.image || product.imagePreview} alt={product.name} /></div></td>
                       <td>{product.name}</td>
-                      <td>${product.price.toFixed(2)}</td>
+                      <td>₹{Number(product.price || 0).toFixed(2)}</td>
                       <td>{product.category}</td>
                       <td>{product.stock}</td>
                       <td>{product.featured ? 'Yes' : 'No'}</td>
                       <td>
-                        <button className="edit-btn">Edit</button>
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleDeleteProduct(product.id)}
-                        >
-                          Delete
-                        </button>
+                        <button className="edit-btn" onClick={() => handleEditClick(product)}>Edit</button>
+                        <button className="delete-btn" onClick={() => handleDeleteProduct(product.id)}>Delete</button>
                       </td>
                     </tr>
                   ))}
@@ -302,7 +255,7 @@ const EcommerceAdmin = () => {
                   <tr key={order.id}>
                     <td>{order.id}</td>
                     <td>{order.customer}</td>
-                    <td>${order.total.toFixed(2)}</td>
+                    <td>₹{order.total.toFixed(2)}</td>
                     <td>
                       <select defaultValue={order.status}>
                         <option value="Processing">Processing</option>
@@ -312,9 +265,7 @@ const EcommerceAdmin = () => {
                       </select>
                     </td>
                     <td>{order.date}</td>
-                    <td>
-                      <button className="view-btn">View Details</button>
-                    </td>
+                    <td><button className="view-btn">View Details</button></td>
                   </tr>
                 ))}
               </tbody>
@@ -342,9 +293,7 @@ const EcommerceAdmin = () => {
                     <td>{customer.name}</td>
                     <td>{customer.email}</td>
                     <td>{customer.orders}</td>
-                    <td>
-                      <button className="view-btn">View Profile</button>
-                    </td>
+                    <td><button className="view-btn">View Profile</button></td>
                   </tr>
                 ))}
               </tbody>
