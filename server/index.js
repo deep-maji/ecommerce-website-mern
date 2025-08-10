@@ -4,6 +4,7 @@ import userRoutes from './routes/userRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import cartRoutes from './routes/cartRoutes.js'
 import productRoutes from './routes/productRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 import cors from 'cors'
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/users', userRoutes);
 app.use('/admin', adminRoutes);
 app.use('/cart', cartRoutes);
 app.use('/product', productRoutes);
+app.use('/orders', orderRoutes);
 
 
 app.listen(PORT,() => {
