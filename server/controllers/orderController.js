@@ -3,7 +3,7 @@ import Order from '../models/order.js';
 
 export const placeOrder = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.userId;
     const { totalAmount } = req.body; 
 
     const user = await User.findById(userId).populate('cart.productId');
@@ -39,7 +39,7 @@ export const placeOrder = async (req, res) => {
 
 export const getUserOrders = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.userId;
     const orders = await Order.find({ userId }).populate('products.productId');
     res.json(orders);
   } catch (err) {

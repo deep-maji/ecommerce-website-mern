@@ -1,5 +1,6 @@
 import User from '../models/user.js';
-import  jwt  from "jsonwebtoken";
+import generateToken from './authController.js';
+
 
 export const signupUser = async (req, res) => {
   try {
@@ -10,10 +11,15 @@ export const signupUser = async (req, res) => {
       return res.status(409).json({ msg: "User already exists" });
     }
 
-    const newUser = new User({ name, email, password });
-    await newUser.save();
+    const newUser = await new User({ name, email, password }).save();
+    
+    const token = generateToken(newUser.id);
 
-    res.status(201).json({ msg: "User created successfully" });
+    res.status(201).json({ 
+      msg: "User created successfully",
+      token: token
+    });
+
   } catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ msg: "Internal Server Error" });
@@ -29,15 +35,13 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ msg: "Invalid email or password" });
     }
     
-    const token = jwt.sign(
-      {id: user.id},
-      process.env.SECRET_KEY,
-    )
+    const token = generateToken(user.id)
 
     res.status(200).json({ 
       msg: "Login successful",
       token: token
     });
+    
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ msg: "Internal Server Error" });
