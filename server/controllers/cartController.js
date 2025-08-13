@@ -3,7 +3,7 @@ import Product from '../models/product.js';
 
 export const addToCart = async (req, res) => {
   try {
-    const userId = req.params.userId
+    const userId = req.userId;
     const { productId, quantity } = req.body;
 
     const user = await User.findById(userId);
@@ -30,7 +30,8 @@ export const addToCart = async (req, res) => {
 
 export const removeFromCart = async (req, res) => {
   try {
-    const { userId, productId } = req.params;
+    const userId = req.userId;
+    const { productId } = req.params;
 
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ msg: "User not found" });
@@ -49,7 +50,7 @@ export const removeFromCart = async (req, res) => {
 
 export const viewCart = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = req.userId;
 
     const user = await User.findById(userId).populate('cart.productId');
     if (!user) {

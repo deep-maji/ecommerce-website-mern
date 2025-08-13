@@ -1,4 +1,5 @@
 import Admin from '../models/admin.js';
+
 export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
