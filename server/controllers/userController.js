@@ -42,7 +42,7 @@ export const loginUser = async (req, res) => {
       token: token,
       name: user.name,
       email: user.email,
-      adress: user.address,
+      address: user.address,
     });
     
   } catch (err) {
