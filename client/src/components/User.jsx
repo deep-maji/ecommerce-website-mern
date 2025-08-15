@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import "../styles/UserDashboard.css";
 
 export const User = () => {
+    const navigate = useNavigate();
+
     const [fullName, setFullName] = useState("John Doe");
     const [address, setAddress] = useState("123 Main Street, New York");
     const [email, setEmail] = useState("user@example.com");
@@ -15,6 +18,14 @@ export const User = () => {
         { id: 1003, date: "Jul 30, 2025", status: "Shipped", total: "$45.00" }
     ]);
 
+    // ✅ Redirect if user is not logged in (no token)
+    useEffect(() => {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+            navigate("/users/login");
+        }
+    }, [navigate]);
+
     const cancelOrder = (id) => {
         setOrders((prev) =>
             prev.map((o) =>
@@ -24,8 +35,9 @@ export const User = () => {
     };
 
     const logout = () => {
+        localStorage.removeItem("authToken"); // remove token
         alert("You have logged out!");
-        // Actual logout logic can be added here
+        navigate("/users/login"); // go to login page
     };
 
     const saveProfile = () => {

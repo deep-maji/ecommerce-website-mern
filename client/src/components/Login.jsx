@@ -1,14 +1,23 @@
 import '../styles/LS.css';
 import Navbar from './navbar';
 import Footer from './footer';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      navigate("/users/user");
+    }
+  }, [navigate]);
 
   const onInputChange = (e) => {
     setLoginData((prev) => ({
@@ -16,6 +25,18 @@ export const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const getToken = async (loginDone) => {
+    try {
+      let res = await axios.post('http://localhost:3000/users/login', { ...loginData });
+      const { msg, token } = res.data;
+      localStorage.setItem("authToken", token);
+      loginDone();
+    } catch (error) {
+      console.log(error, "Login");
+      alert("Account does not exist. Please sign up first.");
+    }
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -32,9 +53,21 @@ export const Login = () => {
       return;
     }
 
-    // All validations passed
-    alert("Login successful!");
     console.log("Logged in with:", loginData);
+    getToken(() => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        // All validations passed
+        alert("Login successful!");
+        navigate("/users/user");
+      }
+
+      if (!token) {
+        alert("User not exsist.");
+      }
+    });
+
+
   };
 
   return (
