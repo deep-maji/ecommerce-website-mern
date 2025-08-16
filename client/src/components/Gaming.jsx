@@ -15,11 +15,37 @@ export const Gaming = () => {
   const [visible, setVisible] = useState(false);
   const [products, setProducts] = useState([]);
 
-  const showCartNoti = () => {
-    setVisible(true);
-    setTimeout(() => {
-      setVisible(false);
-    }, 2000);
+  const showCartNoti = async (e) => {
+    let token = localStorage.getItem("authToken");
+    if (token) {
+      const userSelectedItem = e.target.parentElement.parentElement.parentElement;
+      const productId = userSelectedItem.getAttribute("id");
+      
+      try {
+        let res = await axios.post(
+          "http://localhost:3000/cart",
+          {
+            productId: productId,
+            quantity: 1
+          },
+          {
+            headers: {
+              Authorization: token
+            }
+          }
+        );
+        setVisible(true);
+        setTimeout(() => {
+          setVisible(false);
+        }, 2000);
+      } catch (error) {
+        console.log("Add to cart error : ", error);
+      }
+    }
+    else {
+      alert("Please log in to continue.");
+    }
+
   };
 
   // Fetch gaming products
@@ -65,7 +91,7 @@ export const Gaming = () => {
           <div id="cate-right" className="container-fluid">
             <div className="row">
               {products.map((product, index) => (
-                <div className="col-lg-3 col-md-6 col-12" key={product.id || index}>
+                <div className="col-lg-3 col-md-6 col-12" id={product._id.toString()} key={product._id || index}>
                   <div id="card">
                     <div id="card-img">
                       <img src={product.image} alt={product.name} />

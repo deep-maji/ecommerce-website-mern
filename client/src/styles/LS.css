@@ -1,74 +1,157 @@
+/* Main container */
 #ls-div {
     width: 100%;
+    min-height: 100vh; /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #eee;
-    padding: 1vw 10vw;
+    padding: 2rem 1rem;
 }
 
+/* Wrapper box */
 #ls-wrapper {
-    padding: 3vw;
-    border-radius: 10px;
-    transition: all ease 0.5s;
+    width: 100%;
+    max-width: 450px; /* Prevents stretching */
+    padding: 2rem;
+    border-radius: 12px;
     background-color: #F8F8F8;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-#ls-heading {
-    padding: 2vw;
-    font-size: 2vw;
+#ls-wrapper:hover {
+    transform: translateY(-4px);
 }
 
+/* Heading */
 #ls-heading {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
     text-align: center;
+    color: #333;
 }
 
+/* Form container */
 #ls-info {
-    height: 100%;
-    font-size: 1.4rem;
+    width: 100%;
+    font-size: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
+/* Inputs */
 .Ls-int {
-    padding: 0.9vw;
+    padding: 0.9rem;
     width: 100%;
-    width: 40vw;
-    border-radius: 5px;
-    border: 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
+.Ls-int:focus {
+    border: 1px solid #007bff;
+    box-shadow: 0 0 4px rgba(0,123,255,0.3);
+}
+
+/* Label groups */
 .lg {
-    margin-bottom: 2rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.lg label {
+    font-weight: 500;
+    color: #444;
 }
 
 .in-div {
-    margin-top: 0.8rem;
+    margin-top: 0.5rem;
 }
 
+/* Button */
 #btn-div {
     display: flex;
     justify-content: center;
-    
+    margin-top: 1rem;
 }
 
-#btn-div button{
-    padding: 0.8rem 1.5rem;
-    border-radius: 10px;
-    border: 0;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    transition: all ease 0.5s;
+#btn-div button {
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 #btn-div button:hover {
-    transform: scale(1.1);
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
+/* Login link */
 .ls-link {
-    font-size: 1.2vw;
-    margin-top: 2rem;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.ls-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* ✅ Responsive styles */
+
+/* Tablets */
+@media (max-width: 768px) {
+    #ls-wrapper {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+    #ls-heading {
+        font-size: 1.6rem;
+    }
+    .Ls-int {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+    #btn-div button {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    #ls-wrapper {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    #ls-heading {
+        font-size: 1.4rem;
+    }
+    .Lg label {
+        font-size: 0.9rem;
+    }
+    .Ls-int {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+    #btn-div button {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+    .ls-link {
+        font-size: 0.85rem;
+    }
 }

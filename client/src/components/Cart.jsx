@@ -3,8 +3,10 @@ import Footer from './footer';
 import '../styles/Cart.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
 
   const handleQuantityChange = (id, delta) => {
@@ -24,8 +26,20 @@ export const Cart = () => {
     );
   };
 
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item._id !== id));
+  const removeItem = async (e) => {
+    let token = localStorage.getItem("authToken");
+    const userSelectItem = e.target.parentElement.parentElement;
+    const productId = userSelectItem.getAttribute("class");
+    try {
+      let res = await axios.delete(`http://localhost:3000/cart/${productId}`, {
+        headers : {
+          Authorization : token
+        }
+      });
+      setCartItems((prev) => prev.filter((item) => item.productId._id !== productId));
+    } catch (error) {
+      console.log(`Remove item - error ${error}`);
+    }
   };
 
   // Order Summary Calculations
@@ -43,7 +57,7 @@ export const Cart = () => {
       if (token) {
         let res = await axios.get("http://localhost:3000/cart", {
           headers: {
-            Authorization: `${token}`,
+            Authorization: token
           },
         });
 
@@ -55,6 +69,28 @@ export const Cart = () => {
       }
     } catch (error) {
       console.log(`Cart error. ${error}`);
+    }
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      await axios.post("http://localhost:3000/orders",
+      {
+        totalAmount : total
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      // Show success alert
+      alert("Order placed successfully");
+      // navigate("/");
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert("No items in your cart.");
     }
   };
 
@@ -74,7 +110,7 @@ export const Cart = () => {
             <div id="cart-card-warpper">
               {cartItems.length > 0 ? (
                 cartItems.map((item) => (
-                  <div id="cart-card" key={item._id}>
+                  <div id="cart-card" key={item._id} className={item.productId._id.toString()}>
                     <div id="cart-img">
                       <img
                         src={item.productId.image}
@@ -103,7 +139,7 @@ export const Cart = () => {
                       <div id="cart-price">
                         <p>₹{item.productId.price * item.quantity}</p>
                       </div>
-                      <div id="cart-remove" onClick={() => removeItem(item._id)}>
+                      <div id="cart-remove" onClick={removeItem}>
                         Remove
                       </div>
                     </div>
@@ -142,7 +178,7 @@ export const Cart = () => {
                 </div>
               </div>
 
-              <button className="btn-checkout" aria-label="Proceed to checkout">
+              <button className="btn-checkout" aria-label="Proceed to checkout" onClick={handleCheckout}>
                 Checkout
               </button>
             </div>
