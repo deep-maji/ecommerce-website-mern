@@ -113,7 +113,7 @@ export const Cart = () => {
                   <div id="cart-card" key={item._id} className={item.productId._id.toString()}>
                     <div id="cart-img">
                       <img
-                        src={item.productId.image}
+                        src={`http://localhost:3000/${item.productId.image}`}
                         alt={item.productId.name}
                       />
                     </div>

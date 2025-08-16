@@ -88,7 +88,7 @@ export const Computer = () => {
                 <div id={product._id.toString()} key={product._id || index} className="col-lg-3 col-md-6 col-12">
                   <div id="card">
                     <div id="card-img">
-                      <img src={product.image} alt={product.name} />
+                      <img src={`http://localhost:3000/${product.image}`} alt={product.name} />
                     </div>
                     <div id="card-title">
                       <p>{product.name}</p>
