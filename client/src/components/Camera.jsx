@@ -43,14 +43,13 @@ export const Camera = () => {
       }
     }
     else {
-      alert("User not login.");
+      alert("Please log in to continue.");
     }
 
   };
 
-  // Fetch data and filter only camera category
   useEffect(() => {
-    axios.get("http://localhost:3000/product") // replace with your real API
+    axios.get("http://localhost:3000/product")
       .then(res => {
         const cameraProducts = res.data.filter(item => item.category?.toLowerCase() === "camera");
         setProducts(cameraProducts);

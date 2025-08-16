@@ -43,7 +43,7 @@ export const Gaming = () => {
       }
     }
     else {
-      alert("User not login.");
+      alert("Please log in to continue.");
     }
 
   };

@@ -1,4 +1,3 @@
-import '../styles/LS.css';
 import Navbar from './navbar';
 import Footer from './footer';
 import { useState, useEffect } from 'react';
@@ -28,20 +27,19 @@ export const Login = () => {
 
   const getToken = async (loginDone) => {
     try {
-      let res = await axios.post('http://localhost:3000/users/login', { ...loginData });
-      const { msg, token, email, address , name } = res.data;
-      localStorage.setItem("userInfo", JSON.stringify({email, address, name}));
+      let res = await axios.post("http://localhost:3000/users/login", { ...loginData });
+      const { msg, token, email, address, name } = res.data;
+      localStorage.setItem("userInfo", JSON.stringify({ email, address, name }));
       localStorage.setItem("authToken", token);
       loginDone();
     } catch (error) {
       console.log(error, "Login");
-      alert("Account does not exist. Please sign up first.");
+      alert("Invalid account or password. Please sign up first.");
     }
-  }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     const { email, password } = loginData;
 
     if (email.trim() === "") {
@@ -49,72 +47,65 @@ export const Login = () => {
       return;
     }
 
-    if (password.length <= 4) {
-      alert("Password must be more than 4 characters.");
+    if (password.length < 6) {
+      alert("Password must be more than 6 characters.");
       return;
     }
 
-    console.log("Logged in with:", loginData);
     getToken(() => {
       const token = localStorage.getItem("authToken");
       if (token) {
-        // All validations passed
         alert("Login successful!");
         navigate("/users/user");
-      }
-
-      if (!token) {
-        alert("User not exsist.");
+      } else {
+        alert("User does not exist.");
       }
     });
-
-
   };
 
   return (
     <>
       <Navbar />
-      <div id='ls-div'>
-        <div id='ls-wrapper'>
-          <div id='ls-heading'>
-            <h1>Login</h1>
-          </div>
-          <div id='ls-info'>
-            <form onSubmit={handleLogin}>
-              <div className='lg'>
-                <label htmlFor='email'>Email</label>
-                <div className='in-div'>
-                  <input
-                    name='email'
-                    value={loginData.email}
-                    onChange={onInputChange}
-                    className='Ls-int'
-                    id='email'
-                    type='email'
-                    placeholder='Enter email'
-                  />
-                </div>
-              </div>
-              <div className='lg'>
-                <label htmlFor='password'>Password</label>
-                <div className='in-div'>
-                  <input
-                    name='password'
-                    value={loginData.password}
-                    onChange={onInputChange}
-                    className='Ls-int'
-                    id='password'
-                    type='password'
-                    placeholder='Enter password'
-                  />
-                </div>
-              </div>
-              <div id='btn-div'>
-                <button className='Ls-int' type='submit'>Login</button>
-              </div>
-            </form>
-            <NavLink to={"/users/signup"} className="ls-link">
-              Don't have an account? Sign up
+      <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+        <div className="card shadow-lg p-4 w-100" style={{ maxWidth: "450px" }}>
+          <h2 className="text-center mb-4 fw-bold">Login</h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label fw-semibold">Email</label>
+              <input
+                name="email"
+                value={loginData.email}
+                onChange={onInputChange}
+                className="form-control"
+                id="email"
+                type="email"
+                placeholder="Enter email"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label fw-semibold">Password</label>
+              <input
+                name="password"
+                value={loginData.password}
+                onChange={onInputChange}
+                className="form-control"
+                id="password"
+                type="password"
+                placeholder="Enter password"
+              />
+            </div>
+
+            <div className="d-grid">
+              <button className="btn btn-dark btn-lg" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
+
+          <div className="text-center mt-3">
+            <NavLink to="/users/signup" className="text-decoration-none">
+              Don't have an account? <span className="fw-semibold text-primary">Sign up</span>
             </NavLink>
           </div>
         </div>

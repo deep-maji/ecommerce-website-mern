@@ -90,7 +90,7 @@ export const Cart = () => {
       // navigate("/");
     } catch (error) {
       console.error("Checkout failed:", error);
-      alert("Cart is empty.");
+      alert("No items in your cart.");
     }
   };
 

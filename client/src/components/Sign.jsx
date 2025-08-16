@@ -1,4 +1,3 @@
-import '../styles/LS.css'
 import Navbar from './navbar';
 import Footer from './footer';
 import { useState, useEffect } from 'react';
@@ -19,7 +18,6 @@ export const Sign = () => {
     }));
   };
 
-  // If user already has token → go directly to user page
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
@@ -29,48 +27,28 @@ export const Sign = () => {
 
   const submitData = async (e) => {
     e.preventDefault();
-
     const { name, email, password } = user;
 
-    // Client-side validation
-    if (!name.trim()) {
-      alert("Please enter your name.");
-      return;
-    }
-    if (!email.trim()) {
-      alert("Please enter your email.");
-      return;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      alert("Please enter a valid email address.");
-      return;
-    }
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters long.");
-      return;
-    }
+    if (!name.trim()) return alert("Please enter your name.");
+    if (!email.trim()) return alert("Please enter your email.");
+    if (!/\S+@\S+\.\S+/.test(email)) return alert("Please enter a valid email address.");
+    if (password.length < 6) return alert("Password must be at least 6 characters long.");
 
     try {
       const res = await fetch("http://localhost:3000/users/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
       });
 
       const data = await res.json();
-      const { msg, token, email, address , name } = data;
-      localStorage.setItem("userInfo", JSON.stringify({email, address, name}));
-      console.log("Server response:", data);
+      const { msg, token, email, address, name } = data;
+      localStorage.setItem("userInfo", JSON.stringify({ email, address, name }));
 
       if (res.ok) {
-        // Save token
-        if (data.token) {
-          localStorage.setItem("authToken", data.token);
-        }
+        if (data.token) localStorage.setItem("authToken", data.token);
         alert("Signup successful!");
-        navigate("/users/user"); // Go to user page
+        navigate("/users/user");
       } else {
         alert(data.msg || "Signup failed!");
       }
@@ -83,61 +61,59 @@ export const Sign = () => {
   return (
     <>
       <Navbar />
-      <div id='ls-div'>
-        <div id='ls-wrapper'>
-          <div id='ls-heading'>
-            <h1>Create your account</h1>
-          </div>
-          <div id='ls-info'>
-            <form onSubmit={submitData}>
-              <div className='lg'>
-                <label htmlFor='name'>Name</label>
-                <div className='in-div'>
-                  <input 
-                    onChange={onValueChange} 
-                    name='name' 
-                    className='Ls-int' 
-                    id='name' 
-                    type='text' 
-                    placeholder='Enter name'
-                    value={user.name}
-                  />
-                </div>
-              </div>
-              <div className='lg'>
-                <label htmlFor='email'>Email</label>
-                <div className='in-div'>
-                  <input 
-                    name='email' 
-                    onChange={onValueChange} 
-                    className='Ls-int' 
-                    id='email' 
-                    type='email' 
-                    placeholder='Enter email'
-                    value={user.email}
-                  />
-                </div>
-              </div>
-              <div className='lg'>
-                <label htmlFor='password'>Password</label>
-                <div className='in-div'>
-                  <input 
-                    name='password' 
-                    onChange={onValueChange} 
-                    className='Ls-int' 
-                    id='password' 
-                    type='password' 
-                    placeholder='Enter password'
-                    value={user.password}
-                  />
-                </div>
-              </div>
-              <div id='btn-div'>
-                <button className='Ls-int' type='submit'>Sign up</button>
-              </div>
-            </form>
-            <NavLink to={"/users/login"} className="ls-link">
-              Login <span className="subtext">existing-customer</span>
+      <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+        <div className="card shadow-lg p-4 w-100" style={{ maxWidth: "450px" }}>
+          <h2 className="text-center mb-4 fw-bold">Create your account</h2>
+          <form onSubmit={submitData}>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label fw-semibold">Name</label>
+              <input 
+                onChange={onValueChange}
+                name="name"
+                className="form-control"
+                id="name"
+                type="text"
+                placeholder="Enter name"
+                value={user.name}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label fw-semibold">Email</label>
+              <input 
+                name="email"
+                onChange={onValueChange}
+                className="form-control"
+                id="email"
+                type="email"
+                placeholder="Enter email"
+                value={user.email}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label fw-semibold">Password</label>
+              <input 
+                name="password"
+                onChange={onValueChange}
+                className="form-control"
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                value={user.password}
+              />
+            </div>
+
+            <div className="d-grid">
+              <button className="btn btn-dark btn-lg" type="submit">
+                Sign up
+              </button>
+            </div>
+          </form>
+
+          <div className="text-center mt-3">
+            <NavLink to="/users/login" className="text-decoration-none">
+              Already have an account? <span className="fw-semibold text-primary">Login</span>
             </NavLink>
           </div>
         </div>
@@ -145,6 +121,6 @@ export const Sign = () => {
       <Footer />
     </>
   );
-}
+};
 
 export default Sign;

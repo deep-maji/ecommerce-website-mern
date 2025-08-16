@@ -43,7 +43,7 @@ export const Computer = () => {
       }
     }
     else {
-      alert("User not login.");
+      alert("Please log in to continue.");
     }
 
   };

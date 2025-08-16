@@ -230,7 +230,7 @@ export const User = () => {
                             className={`badge ${order.status === "Delivered"
                               ? "bg-success"
                               : order.status === "Cancelled"
-                                ? "bg-danger"
+                                ? "bg-dark"
                                 : "bg-warning text-dark"
                               }`}
                           >
@@ -242,7 +242,7 @@ export const User = () => {
                           {order.status !== "Cancelled" &&
                             order.status !== "Delivered" && (
                               <button
-                                className="btn btn-sm btn-danger"
+                                className="btn btn-sm btn-dark"
                                 onClick={() => cancelOrder(order._id)}
                               >
                                 Cancel
