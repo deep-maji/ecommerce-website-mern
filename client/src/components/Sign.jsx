@@ -60,6 +60,8 @@ export const Sign = () => {
       });
 
       const data = await res.json();
+      const { msg, token, email, address , name } = data;
+      localStorage.setItem("userInfo", JSON.stringify({email, address, name}));
       console.log("Server response:", data);
 
       if (res.ok) {

@@ -6,10 +6,11 @@ import "../styles/UserDashboard.css";
 
 export const User = () => {
     const navigate = useNavigate();
+    const {email : userEmail, address : userAdderss, name} = JSON.parse(localStorage.getItem("userInfo"));
 
-    const [fullName, setFullName] = useState("John Doe");
-    const [address, setAddress] = useState("123 Main Street, New York");
-    const [email, setEmail] = useState("user@example.com");
+    const [fullName, setFullName] = useState(name);
+    const [address, setAddress] = useState(userAdderss.toString());
+    const [email, setEmail] = useState(userEmail);
     const [isEditing, setIsEditing] = useState(false);
 
     const [orders, setOrders] = useState([
@@ -18,7 +19,7 @@ export const User = () => {
         { id: 1003, date: "Jul 30, 2025", status: "Shipped", total: "$45.00" }
     ]);
 
-    // ✅ Redirect if user is not logged in (no token)
+    // Redirect if user is not logged in (no token)
     useEffect(() => {
         const token = localStorage.getItem("authToken");
         if (!token) {
@@ -36,6 +37,7 @@ export const User = () => {
 
     const logout = () => {
         localStorage.removeItem("authToken"); // remove token
+        localStorage.removeItem("userInfo");
         alert("You have logged out!");
         navigate("/users/login"); // go to login page
     };

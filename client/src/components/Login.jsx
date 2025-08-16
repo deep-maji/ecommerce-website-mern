@@ -29,7 +29,8 @@ export const Login = () => {
   const getToken = async (loginDone) => {
     try {
       let res = await axios.post('http://localhost:3000/users/login', { ...loginData });
-      const { msg, token } = res.data;
+      const { msg, token, email, address , name } = res.data;
+      localStorage.setItem("userInfo", JSON.stringify({email, address, name}));
       localStorage.setItem("authToken", token);
       loginDone();
     } catch (error) {
