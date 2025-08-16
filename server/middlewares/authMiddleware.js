@@ -4,7 +4,7 @@ export function authenticateUser(req, res, next) {
   const token = req.headers["authorization"]; 
 
   if (!token) {
-    return res.status(401).json({ message: 'You are not logged in' });
+    return res.status(401).json({ message: 'You are not authorized or logged in' });
   }
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);

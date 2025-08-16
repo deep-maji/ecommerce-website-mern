@@ -1,3 +1,4 @@
+import Admin from '../models/admin.js';
 import Product from '../models/product.js';
 
 export const getAllProducts = async (req, res) => {
@@ -21,6 +22,11 @@ export const getProductById = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   try{
+    const adminId = req.userId;
+    const isAdmin = await Admin.findById(adminId);
+    
+    if(!isAdmin) return res.status(401).json({msg: "You do not have permission!"})
+    
     const newProduct = new Product(req.body);
     newProduct.image = req.file ? req.file.path.replace(/\\/g, "/") : null;
     await newProduct.save()
@@ -35,6 +41,11 @@ export const addProduct = async (req, res) => {
 
 export const removeProduct = async (req, res) => {
   try {
+    const adminId = req.userId;
+    const isAdmin = await Admin.findById(adminId);
+    
+    if(!isAdmin) return res.status(401).json({msg: "You do not have permission!"})
+
     const deletedProduct = await Product.findByIdAndDelete(req.params.productId);
     if (!deletedProduct) {
       return res.status(404).json({ message: 'Product not found' });
