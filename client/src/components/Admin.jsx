@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../styles/Admin.css';
 
 const EcommerceAdmin = () => {
-  const token = localStorage.getItem('adminToken');
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
@@ -64,11 +63,7 @@ const EcommerceAdmin = () => {
       }
 
       // Delete from backend
-      await axios.delete(`http://localhost:3000/admin/product/${productId}`, {
-        headers : {
-          Authorization : token
-        }
-      });
+      await axios.delete(`http://localhost:3000/admin/product/${productId}`);
 
       // Remove from state
       setProducts(products.filter((_, i) => i !== index));
@@ -107,7 +102,6 @@ const EcommerceAdmin = () => {
     };
 
     try {
-      
       if (currentEditProduct) {
         // Update existing product
         const res = await axios.put(`http://localhost:3000/product/${currentEditProduct.id}`, productPayload);
@@ -115,11 +109,7 @@ const EcommerceAdmin = () => {
         setCurrentEditProduct(null);
       } else {
         // Add new product
-        const res = await axios.post('http://localhost:3000/admin/product/add', productPayload, {
-          headers : {
-            Authorization : token
-          }
-        });
+        const res = await axios.post('http://localhost:3000/admin/product/add', productPayload);
         setProducts([...products, res.data]);
       }
     } catch (err) {
@@ -155,12 +145,6 @@ const EcommerceAdmin = () => {
     }
   };
 
-  const handleLogout = () => {
-    alert("Logout from admin.")
-    localStorage.removeItem("adminToken");   
-    navigate("/admin");                  
-  };
-
   // Fetch products from server
   useEffect(() => {
     axios.get('http://localhost:3000/product')
@@ -179,7 +163,7 @@ const EcommerceAdmin = () => {
             <h4>Admin Panel</h4>
           </div>
           <div>
-            <h5 style={{ cursor: 'pointer' }} onClick={handleLogout}>Log out</h5>
+            <h5 style={{ cursor: 'pointer' }}>Log out</h5>
           </div>
         </div>
         <nav className="admin-nav">
@@ -194,7 +178,7 @@ const EcommerceAdmin = () => {
           <div className="products-section">
             <h2>{currentEditProduct ? 'Edit Product' : 'Product Management'}</h2>
             <div className="product-form-container">
-              <form onSubmit={handleSubmit} className="product-form" encType="multipart/form-data">
+              <form onSubmit={handleSubmit} className="product-form">
                 <h3>{currentEditProduct ? 'Edit Product' : 'Add New Product'}</h3>
 
                 <div className="form-group">
