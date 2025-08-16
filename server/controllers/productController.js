@@ -21,7 +21,9 @@ export const getProductById = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   try{
-    const newProduct = await new Product(req.body).save()
+    const newProduct = new Product(req.body);
+    newProduct.image = req.file ? req.file.path.replace(/\\/g, "/") : null;
+    await newProduct.save()
     res.status(201).json({
       success: true, product: newProduct
     })

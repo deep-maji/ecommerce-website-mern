@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
+app.use("/productImages", express.static("productImages"));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,4 @@ app.use('/product', productRoutes);
 app.use('/orders', orderRoutes);
 
 
-app.listen(PORT,() => {
-  console.log('App is listning on port 3000')
-})
+app.listen(PORT,() => console.log(`Server running at http://localhost:${PORT}`))
