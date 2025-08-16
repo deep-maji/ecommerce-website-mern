@@ -63,12 +63,15 @@ p {
 #card {
     padding: 1rem;
     border-radius: 10px;
-    background-color: #F6F6F6;
+    background-color: #fff;
+    border: 1px solid #000;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     margin-bottom: 1rem;
+    height: 340px;
+    max-height: 340px;
 
     p {
         margin-bottom: 0.5rem;
