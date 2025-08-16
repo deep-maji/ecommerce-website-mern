@@ -24,8 +24,23 @@ export const Cart = () => {
     );
   };
 
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item._id !== id));
+  const removeItem = async (e) => {
+    let token = localStorage.getItem("authToken");
+    console.log(token);
+    const userSelectItem = e.target.parentElement.parentElement;
+    const productId = userSelectItem.getAttribute("class");
+    console.log(productId);
+    try {
+      let res = await axios.delete(`http://localhost:3000/cart/${productId}`, {
+        headers : {
+          Authorization : token
+        }
+      });
+      console.log(res);
+      setCartItems((prev) => prev.filter((item) => item.productId._id !== productId));
+    } catch (error) {
+      console.log(`Remove item - error ${error}`);
+    }
   };
 
   // Order Summary Calculations
@@ -74,7 +89,7 @@ export const Cart = () => {
             <div id="cart-card-warpper">
               {cartItems.length > 0 ? (
                 cartItems.map((item) => (
-                  <div id="cart-card" key={item._id}>
+                  <div id="cart-card" key={item._id} className={item.productId._id.toString()}>
                     <div id="cart-img">
                       <img
                         src={item.productId.image}
@@ -103,7 +118,7 @@ export const Cart = () => {
                       <div id="cart-price">
                         <p>₹{item.productId.price * item.quantity}</p>
                       </div>
-                      <div id="cart-remove" onClick={() => removeItem(item._id)}>
+                      <div id="cart-remove" onClick={removeItem}>
                         Remove
                       </div>
                     </div>
