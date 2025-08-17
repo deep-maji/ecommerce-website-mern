@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import CC0 from '../assets/images/CC0.svg';
-import CC1 from '../assets/images/CC1.svg';
-import CC2 from '../assets/images/CC2.svg';
-import CC3 from '../assets/images/CC3.svg';
-import CC4 from '../assets/images/CC4.svg';
-import CC5 from '../assets/images/CC5.svg';
-import { NavLink } from "react-router-dom";
+import CateNavs from '../components/CateNavs';
 import axios from "axios";
 import '../styles/CategoryCard.css';
 
@@ -20,7 +14,7 @@ export const Headphone = () => {
     if (token) {
       const userSelectedItem = e.target.parentElement.parentElement.parentElement;
       const productId = userSelectedItem.getAttribute("id");
-      
+
       try {
         let res = await axios.post(
           "http://localhost:3000/cart",
@@ -79,12 +73,7 @@ export const Headphone = () => {
         <div id="Products">
           {/* Left side category icons */}
           <div id="cate-left">
-            <NavLink to={'/category/phone'}><img className='ccimgs-cate' src={CC0} alt="Phones" /></NavLink>
-            <NavLink to={'/category/headphone'}><img className='ccimgs-cate' src={CC1} alt="Headphones" /></NavLink>
-            <NavLink to={'/category/gaming'}><img className='ccimgs-cate' src={CC2} alt="Gaming" /></NavLink>
-            <NavLink to={'/category/camera'}><img className='ccimgs-cate' src={CC3} alt="Cameras" /></NavLink>
-            <NavLink to={'/category/computer'}><img className='ccimgs-cate' src={CC4} alt="Computers" /></NavLink>
-            <NavLink to={'/category/watch'}><img className='ccimgs-cate' src={CC5} alt="Watches" /></NavLink>
+            <CateNavs/>
           </div>
 
           {/* Right side products */}
