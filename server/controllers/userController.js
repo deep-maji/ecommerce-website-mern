@@ -75,7 +75,12 @@ export const updateUser = async (req, res) => {
     Object.assign(user, req.body);
 
     await user.save();
-    res.status(200).json({msg: "User details updated"})
+    res.status(200).json({
+      msg: "User details updated",
+      name: user.name,
+      email: user.email,
+      address: user.address,
+    })
   
   }catch(err){
     console.error("Login error:", err);
