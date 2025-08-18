@@ -32,3 +32,9 @@
      transform: scale(1.03);
 }
 
+@media (max-width: 600px) {
+    .ccimgs {
+        width: 6rem;
+    }
+}
+

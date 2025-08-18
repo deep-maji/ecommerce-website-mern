@@ -33,20 +33,32 @@ p {
 #cate-left {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 0.5rem;
+}
 
-    img {
-        width: 12vw;
-        padding: 0rem 1rem;
-        padding-bottom: 0.5rem;
-    }
+.cate-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 10px;
+    background-color: #1c1c1c;
+    color: #fff;
+    border: 1px solid #000;
+    font-size: 0.5rem;
+    transition: all ease 0.3s;
+}
 
-    h4 {
-        text-align: center;
-        padding: 0.5rem 0;
-        padding-bottom: 1rem;
-        font-size: 2vw;
+@media (max-width:600px) {
+    .cate-container {
+        padding: 0.5rem 0.7rem;
     }
+}
+
+.cate-container:hover {
+    background-color: #444444;
 }
 
 #cate-right {
@@ -61,14 +73,19 @@ p {
 }
 
 #card {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin: 0.5rem;
     padding: 1rem;
     border-radius: 10px;
-    background-color: #F6F6F6;
+    background-color: #fff;
+    border: 1px solid #9b9b9b;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     margin-bottom: 1rem;
+    height: 340px;
+    max-height: 340px;
 
     p {
         margin-bottom: 0.5rem;
@@ -104,61 +121,5 @@ p {
         border-radius: 5px;
         background-color: #000;
         color: #fff;
-    }
-}
-
-@media (max-width: 992px) {
-    #cate-left {
-        img {
-            width: 21vw;
-            padding: 0.5rem;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    #cate-left {
-        img {
-            width: 21vw;
-            padding: 0.5rem;
-        }
-    }
-}
-
-@media (max-width: 450px) {
-    #cate-left {
-        margin-top: 0;
-
-        img {
-            width: 27vw;
-            padding: 0.5rem;
-        }
-    }
-}
-
-
-@media (max-width: 350px) {
-    #cate-left {
-        margin-top: 0;
-
-        img {
-            width: 30vw;
-            padding: 0.5rem;
-        }
-
-        h4 {
-            text-align: center;
-            padding: 0;
-            padding-bottom: 1rem;
-            font-size: 5vw;
-        }
-    }
-
-    #cate-right {
-        h5 {
-            padding: 0;
-            padding-bottom: 1rem;
-            font-size: 6vw;
-        }
     }
 }
