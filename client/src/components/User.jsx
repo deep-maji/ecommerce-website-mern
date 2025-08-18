@@ -86,7 +86,7 @@ export const User = () => {
           }
         })
         alert(`Order cancel Successfully ${id}`);
-        
+
         // setOrders((prev) =>
         //   prev.map((o) =>
         //     o.id === id ? { ...o, status: "Cancelled" } : o
@@ -106,10 +106,47 @@ export const User = () => {
     navigate("/users/login"); // go to login page
   };
 
-  const saveProfile = () => {
-    setIsEditing(false);
-    alert("Profile updated successfully!");
+  const saveProfile = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+
+      // payload
+      const updatedData = {
+        name: fullName,
+        email: email,
+        address: address,
+      };
+
+      const res = await axios.patch("http://localhost:3000/users/", updatedData, {
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.data) {
+        const { name, email, address } = res.data;
+
+        // update state with new values from backend
+        setFullName(name);
+        setEmail(email);
+        setAddress(address);
+
+        // update localStorage so it persists
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify({ name, email, address })
+        );
+
+        alert("Profile updated successfully!");
+        setIsEditing(false);
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("Failed to update profile. Try again.");
+    }
   };
+
 
   return (
     <>

@@ -32,8 +32,8 @@ export const Cart = () => {
     const productId = userSelectItem.getAttribute("class");
     try {
       let res = await axios.delete(`http://localhost:3000/cart/${productId}`, {
-        headers : {
-          Authorization : token
+        headers: {
+          Authorization: token
         }
       });
       setCartItems((prev) => prev.filter((item) => item.productId._id !== productId));
@@ -75,19 +75,25 @@ export const Cart = () => {
   const handleCheckout = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      await axios.post("http://localhost:3000/orders",
-      {
-        totalAmount : total
-      },
-      {
-        headers: {
-          Authorization: token,
-        },
-      });
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+      if (userInfo.address === undefined || userInfo.address === "") {
+        alert("Set address in you profile.");
+      }
+      else {
+        await axios.post("http://localhost:3000/orders",
+          {
+            totalAmount: total
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          });
 
-      // Show success alert
-      alert("Order placed successfully");
-      // navigate("/");
+        // Show success alert
+        alert("Order placed successfully");
+        // navigate("/");
+      }
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("No items in your cart.");
