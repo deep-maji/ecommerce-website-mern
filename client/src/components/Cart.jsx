@@ -92,6 +92,7 @@ export const Cart = () => {
 
         // Show success alert
         alert("Order placed successfully");
+        window.location.reload(true);
         // navigate("/");
       }
     } catch (error) {
@@ -128,19 +129,21 @@ export const Cart = () => {
                         <p>{item.productId.name}</p>
                       </div>
                       <div id="cart-qaun">
-                        <button onClick={() => handleQuantityChange(item._id, -1)}>
+                        {/* <button onClick={() => handleQuantityChange(item._id, -1)}>
                           -
-                        </button>
+                        </button> */}
                         <input
+                          readonly
+                          disabled
                           type="number"
                           value={item.quantity}
                           onChange={(e) =>
                             handleInputChange(item._id, e.target.value)
                           }
                         />
-                        <button onClick={() => handleQuantityChange(item._id, 1)}>
+                        {/* <button onClick={() => handleQuantityChange(item._id, 1)}>
                           +
-                        </button>
+                        </button> */}
                       </div>
                       <div id="cart-price">
                         <p>₹{item.productId.price * item.quantity}</p>

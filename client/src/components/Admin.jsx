@@ -146,6 +146,7 @@ const EcommerceAdmin = () => {
         imagePreview: "",
       });
       setImages([]);
+      window.location.reload(true);
     } catch (err) {
       console.error("Error saving product:", err);
     }
@@ -211,7 +212,7 @@ const EcommerceAdmin = () => {
           >
             Products
           </button>
-          <button
+          {/* <button
             className={activeTab === "orders" ? "active" : ""}
             onClick={() => handleTabChange("orders")}
           >
@@ -222,7 +223,7 @@ const EcommerceAdmin = () => {
             onClick={() => handleTabChange("customers")}
           >
             Customers
-          </button>
+          </button> */}
         </nav>
       </header>
 
@@ -283,7 +284,7 @@ const EcommerceAdmin = () => {
                   />
                 </div>
 
-                <div className="form-group checkbox-group">
+                {/* <div className="form-group checkbox-group">
                   <label>
                     <input
                       type="checkbox"
@@ -293,7 +294,7 @@ const EcommerceAdmin = () => {
                     />
                     Featured Product
                   </label>
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <label>Product Images:</label>
@@ -332,13 +333,13 @@ const EcommerceAdmin = () => {
                     <th>Price</th>
                     <th>Category</th>
                     <th>Stock</th>
-                    <th>Featured</th>
+                    {/* <th>Featured</th> */}
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((product) => (
-                    <tr key={product.id || product._id}>
+                  {products.map((product, index) => (
+                    <tr key={product.id || index}>
                       <td>
                         <div className="product-image">
                           <img
@@ -351,14 +352,14 @@ const EcommerceAdmin = () => {
                       <td>₹{Number(product.price || 0).toFixed(2)}</td>
                       <td>{product.category}</td>
                       <td>{product.stock}</td>
-                      <td>{product.featured ? "Yes" : "No"}</td>
+                      {/* <td>{product.featured ? "Yes" : "No"}</td> */}
                       <td>
-                        <button
+                        {/* <button
                           className="edit-btn"
                           onClick={() => handleEditClick(product)}
                         >
                           Edit
-                        </button>
+                        </button> */}
                         <button
                           className="delete-btn"
                           onClick={() => handleDeleteProduct(product.id || product._id)}
@@ -374,7 +375,7 @@ const EcommerceAdmin = () => {
           </div>
         )}
 
-        {activeTab === "orders" && (
+        {/* {activeTab === "orders" && (
           <div className="orders-section">
             <h2>Order Management</h2>
             <table>
@@ -411,9 +412,9 @@ const EcommerceAdmin = () => {
               </tbody>
             </table>
           </div>
-        )}
+        )} */}
 
-        {activeTab === "customers" && (
+        {/* {activeTab === "customers" && (
           <div className="customers-section">
             <h2>Customer Management</h2>
             <table>
@@ -441,7 +442,7 @@ const EcommerceAdmin = () => {
               </tbody>
             </table>
           </div>
-        )}
+        )} */}
       </main>
     </div>
   );

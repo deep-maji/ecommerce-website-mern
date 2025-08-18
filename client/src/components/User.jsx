@@ -14,15 +14,10 @@ export const User = () => {
   const [email, setEmail] = useState(userEmail);
   const [isEditing, setIsEditing] = useState(false);
 
-  const [orders, setOrders] = useState([
-    { id: 1001, name: "Phone Phone Phone Phone Phone Phone", date: "Aug 5, 2025", status: "Delivered", total: "$120.00" },
-    { id: 1002, name: "Phone Phone Phone Phone Phone Phone", date: "Aug 3, 2025", status: "Processing", total: "$75.50" },
-    { id: 1003, name: "Phone Phone Phone Phone Phone Phone", date: "Jul 30, 2025", status: "Shipped", total: "$45.00" }
-  ]);
+  const [orders, setOrders] = useState([]);
 
   const getOrderDetails = async () => {
     const token = localStorage.getItem("authToken");
-    console.log(userAdderss);
     try {
       const res = await axios.get("http://localhost:3000/orders", {
         headers: {
@@ -86,7 +81,7 @@ export const User = () => {
           }
         })
         alert(`Order cancel Successfully ${id}`);
-
+        window.location.reload(true);
         // setOrders((prev) =>
         //   prev.map((o) =>
         //     o.id === id ? { ...o, status: "Cancelled" } : o
