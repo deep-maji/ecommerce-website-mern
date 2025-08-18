@@ -1,4 +1,4 @@
-import { BannerOne, BannerTwo } from './banner'
+import { BannerOne, BannerTwo, BannerThree } from './banner'
 import Category from './Category'
 import Navbar from './navbar'
 import Footer from './footer'
@@ -11,6 +11,7 @@ export const Home = () => {
                 <BannerOne />
                 <Category />
                 <BannerTwo />
+                <BannerThree />
             </main>
             <Footer />
         </>

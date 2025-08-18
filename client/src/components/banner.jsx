@@ -1,6 +1,7 @@
 import '../styles/Banner.css'
 import BannerPhoneImg from '../assets/images/BannerPhoneImg.svg'
 import Banner2 from '../assets/images/Banner2.svg'
+import Banner3 from '../assets/images/Banner3.svg'
 
 export const BannerOne = () => {
     return (
@@ -23,11 +24,21 @@ export const BannerOne = () => {
 export const BannerTwo = () => {
     return (
         <>
-            <div id='banner-two-div'>
+            <div className='banner-two-div'>
                 <img src={Banner2}></img>
             </div>
         </>
     )
 }
 
-export default { BannerOne,BannerTwo};
+export const BannerThree = () => {
+    return (
+        <>
+            <div className='banner-two-div'>
+                <img src={Banner3}></img>
+            </div>
+        </>
+    )
+}
+
+export default { BannerOne,BannerTwo, BannerThree};
