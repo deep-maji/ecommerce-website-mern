@@ -10,7 +10,7 @@ export const User = () => {
   const { email: userEmail, address: userAdderss, name } = JSON.parse(localStorage.getItem("userInfo"));
 
   const [fullName, setFullName] = useState(name);
-  const [address, setAddress] = useState(userAdderss.toString());
+  const [address, setAddress] = useState(userAdderss);
   const [email, setEmail] = useState(userEmail);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -22,6 +22,7 @@ export const User = () => {
 
   const getOrderDetails = async () => {
     const token = localStorage.getItem("authToken");
+    console.log(userAdderss);
     try {
       const res = await axios.get("http://localhost:3000/orders", {
         headers: {
