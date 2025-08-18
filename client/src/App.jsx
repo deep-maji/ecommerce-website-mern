@@ -14,12 +14,14 @@ import Cart from './components/Cart'
 import User from './components/User'
 import AdminLogin from './components/AdminSignUp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
 
   return (
     <>
       <Router>
+        <ScrollToTop/>
         <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path='/users/signup' element={<Sign/>}></Route>

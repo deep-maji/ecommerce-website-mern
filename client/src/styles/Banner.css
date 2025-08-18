@@ -52,6 +52,26 @@
   }
 }
 
+#banner-three-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+}
+
+#banner-three-left {
+  display: flex;
+  flex-direction: column;
+}
+
+#banner-three-left-bottom {
+  display: flex;
+}
+
 @media (max-width:600px) {
   #banner {
     flex-direction: column;
@@ -85,5 +105,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  #banner-three-div {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #banner-three-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #banner-three-left-bottom {
+    display: flex;
+    flex-direction: column;
   }
 }
