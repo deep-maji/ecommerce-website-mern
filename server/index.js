@@ -18,6 +18,7 @@ app.use(cors({
     "http://localhost:5173",
     "https://ecommerce-website-mern-six.vercel.app"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true
 }));
 app.use(express.json());
