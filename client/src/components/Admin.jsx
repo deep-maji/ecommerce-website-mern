@@ -263,14 +263,22 @@ const EcommerceAdmin = () => {
 
                 <div className="form-group">
                   <label>Category:</label>
-                  <input
-                    type="text"
+                  <select
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
                     required
-                  />
+                  >
+                    <option value="">-- Select Category --</option>
+                    <option value="camera">Camera</option>
+                    <option value="computer">Computer</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="headphone">Headphone</option>
+                    <option value="phone">Phone</option>
+                    <option value="watch">Watch</option>
+                  </select>
                 </div>
+
 
                 <div className="form-group">
                   <label>Stock Quantity:</label>
