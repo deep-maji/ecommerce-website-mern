@@ -92,7 +92,7 @@ export const Cart = () => {
 
         // Show success alert
         alert("Order placed successfully");
-        // window.location.reload(true);
+        window.location.reload(true);
         // navigate("/");
       }
     } catch (error) {
