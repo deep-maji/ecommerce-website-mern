@@ -13,7 +13,12 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.use("/productImages", express.static("productImages"));
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://ecommerce-website-mern-six.vercel.app/" 
+  ]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
