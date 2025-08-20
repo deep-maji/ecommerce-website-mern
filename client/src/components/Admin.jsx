@@ -54,7 +54,7 @@ const EcommerceAdmin = () => {
     try {
       const token = localStorage.getItem("adminToken");
 
-      await axios.delete(`http://localhost:3000/admin/product/${id}`, {
+      await axios.delete(`https://ecommerce-server-p79x.onrender.com/admin/product/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -104,7 +104,7 @@ const EcommerceAdmin = () => {
       if (currentEditProduct) {
         // Update existing product
         res = await axios.put(
-          `http://localhost:3000/admin/product/${currentEditProduct.id || currentEditProduct._id}`,
+          `https://ecommerce-server-p79x.onrender.com/admin/product/${currentEditProduct.id || currentEditProduct._id}`,
           formDataToSend,
           {
             headers: {
@@ -124,7 +124,7 @@ const EcommerceAdmin = () => {
       } else {
         // Add new product
         res = await axios.post(
-          "http://localhost:3000/admin/product/add",
+          "https://ecommerce-server-p79x.onrender.com/admin/product/add",
           formDataToSend,
           {
             headers: {
@@ -184,7 +184,7 @@ const EcommerceAdmin = () => {
   // Fetch products from server
   useEffect(() => {
     axios
-      .get("http://localhost:3000/product")
+      .get("https://ecommerce-server-p79x.onrender.com/product")
       .then((res) => {
         setProducts(res.data);
       })

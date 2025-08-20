@@ -42,7 +42,7 @@ export default function AdminLogin() {
     if (validate()) {
       try {
         // Call API
-        const res = await axios.post("http://localhost:3000/admin/login", {
+        const res = await axios.post("https://ecommerce-server-p79x.onrender.com/admin/login", {
           email: adminEmail,
           password: adminPassword,
         });

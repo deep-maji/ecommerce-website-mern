@@ -16,7 +16,7 @@ export const BannerOne = () => {
                     <p>Pro.Beyond.</p>
                     <h1>IPhone 14 Pro</h1>
                     <p>Created to change everything for the better. For everyone</p>
-                    <button>Shop</button>
+                    <NavLink to={'/category/phone'}><button>Shop</button></NavLink>
                 </div>
                 <div id="right">
                     <img src={BannerPhoneImg}></img>
@@ -30,7 +30,7 @@ export const BannerTwo = () => {
     return (
         <>
             <div className='banner-two-div'>
-                <img src={Banner2}></img>
+                <NavLink to={'/category/phone'}><img src={Banner2}></img></NavLink>
             </div>
         </>
     )

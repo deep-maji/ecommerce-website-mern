@@ -31,7 +31,7 @@ export const Cart = () => {
     const userSelectItem = e.target.parentElement.parentElement;
     const productId = userSelectItem.getAttribute("class");
     try {
-      let res = await axios.delete(`http://localhost:3000/cart/${productId}`, {
+      let res = await axios.delete(`https://ecommerce-server-p79x.onrender.com/cart/${productId}`, {
         headers: {
           Authorization: token
         }
@@ -55,7 +55,7 @@ export const Cart = () => {
     try {
       const token = localStorage.getItem("authToken");
       if (token) {
-        let res = await axios.get("http://localhost:3000/cart", {
+        let res = await axios.get("https://ecommerce-server-p79x.onrender.com/cart", {
           headers: {
             Authorization: token
           },
@@ -80,7 +80,7 @@ export const Cart = () => {
         alert("Set address in you profile.");
       }
       else {
-        await axios.post("http://localhost:3000/orders",
+        await axios.post("https://ecommerce-server-p79x.onrender.com/orders",
           {
             totalAmount: total
           },
@@ -120,7 +120,7 @@ export const Cart = () => {
                   <div id="cart-card" key={item._id} className={item.productId._id.toString()}>
                     <div id="cart-img">
                       <img
-                        src={`http://localhost:3000/${item.productId.image}`}
+                        src={`${item.productId.image}`}
                         alt={item.productId.name}
                       />
                     </div>
@@ -133,7 +133,7 @@ export const Cart = () => {
                           -
                         </button> */}
                         <input
-                          readonly
+                          readOnly
                           disabled
                           type="number"
                           value={item.quantity}
