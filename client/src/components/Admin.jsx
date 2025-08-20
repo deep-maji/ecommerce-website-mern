@@ -343,7 +343,7 @@ const EcommerceAdmin = () => {
                       <td>
                         <div className="product-image">
                           <img
-                            src={`http://localhost:3000/${product.image}`}
+                            src={`${product.image}`}
                             alt={product.name}
                           />
                         </div>
