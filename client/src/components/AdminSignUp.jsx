@@ -42,7 +42,7 @@ export default function AdminLogin() {
     if (validate()) {
       try {
         // Call API
-        const res = await axios.post("https://ecommerce-server-p79x.onrender.com/admin/login", {
+        const res = await axios.post(`${import.meta.env.VITE_URL}/admin/login`, {
           email: adminEmail,
           password: adminPassword,
         });

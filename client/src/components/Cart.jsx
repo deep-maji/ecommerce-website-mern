@@ -31,7 +31,7 @@ export const Cart = () => {
     const userSelectItem = e.target.parentElement.parentElement;
     const productId = userSelectItem.getAttribute("class");
     try {
-      let res = await axios.delete(`https://ecommerce-server-p79x.onrender.com/cart/${productId}`, {
+      let res = await axios.delete(`${import.meta.env.VITE_URL}/cart/${productId}`, {
         headers: {
           Authorization: token
         }
@@ -55,7 +55,7 @@ export const Cart = () => {
     try {
       const token = localStorage.getItem("authToken");
       if (token) {
-        let res = await axios.get("https://ecommerce-server-p79x.onrender.com/cart", {
+        let res = await axios.get(`${import.meta.env.VITE_URL}/cart`, {
           headers: {
             Authorization: token
           },
@@ -80,7 +80,7 @@ export const Cart = () => {
         alert("Set address in you profile.");
       }
       else {
-        await axios.post("https://ecommerce-server-p79x.onrender.com/orders",
+        await axios.post(`${import.meta.env.VITE_URL}/orders`,
           {
             totalAmount: total
           },

@@ -35,7 +35,7 @@ export const Sign = () => {
     if (password.length < 6) return alert("Password must be at least 6 characters long.");
 
     try {
-      const res = await fetch("https://ecommerce-server-p79x.onrender.com/users/signup", {
+      const res = await fetch(`${import.meta.env.VITE_URL}/users/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)

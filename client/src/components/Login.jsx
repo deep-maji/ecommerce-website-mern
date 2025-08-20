@@ -27,7 +27,7 @@ export const Login = () => {
 
   const getToken = async (loginDone) => {
     try {
-      let res = await axios.post("https://ecommerce-server-p79x.onrender.com/users/login", { ...loginData });
+      let res = await axios.post(`${import.meta.env.VITE_URL}/users/login`, { ...loginData });
       const { msg, token, email, address, name } = res.data;
       localStorage.setItem("userInfo", JSON.stringify({ email, address, name }));
       localStorage.setItem("authToken", token);

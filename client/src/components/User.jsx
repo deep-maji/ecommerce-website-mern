@@ -19,7 +19,7 @@ export const User = () => {
   const getOrderDetails = async () => {
     const token = localStorage.getItem("authToken");
     try {
-      const res = await axios.get("https://ecommerce-server-p79x.onrender.com/orders", {
+      const res = await axios.get(`{import.meta.env.VITE_URL}/orders`, {
         headers: {
           Authorization: token,
         },
@@ -75,7 +75,7 @@ export const User = () => {
       let value = prompt(`Cancel all products with ID ${id}? (yes/no)`);
       if (value.toLowerCase() === 'yes') {
         const token = localStorage.getItem("authToken");
-        let res = await axios.delete(`https://ecommerce-server-p79x.onrender.com/orders/${id}`, {
+        let res = await axios.delete(`${import.meta.env.VITE_URL}/orders/${id}`, {
           headers: {
             Authorization: token
           }
@@ -112,7 +112,7 @@ export const User = () => {
         address: address,
       };
 
-      const res = await axios.patch("https://ecommerce-server-p79x.onrender.com/users/", updatedData, {
+      const res = await axios.patch(`${import.meta.env.VITE_URL}/users/`, updatedData, {
         headers: {
           Authorization: token,
           "Content-Type": "application/json",

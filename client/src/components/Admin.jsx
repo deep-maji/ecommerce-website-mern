@@ -54,7 +54,7 @@ const EcommerceAdmin = () => {
     try {
       const token = localStorage.getItem("adminToken");
 
-      await axios.delete(`https://ecommerce-server-p79x.onrender.com/admin/product/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_URL}/admin/product/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -104,7 +104,7 @@ const EcommerceAdmin = () => {
       if (currentEditProduct) {
         // Update existing product
         res = await axios.put(
-          `https://ecommerce-server-p79x.onrender.com/admin/product/${currentEditProduct.id || currentEditProduct._id}`,
+          `${import.meta.env.VITE_URL}/admin/product/${currentEditProduct.id || currentEditProduct._id}`,
           formDataToSend,
           {
             headers: {
@@ -124,7 +124,7 @@ const EcommerceAdmin = () => {
       } else {
         // Add new product
         res = await axios.post(
-          "https://ecommerce-server-p79x.onrender.com/admin/product/add",
+          `${import.meta.env.VITE_URL}/admin/product/add`,
           formDataToSend,
           {
             headers: {
@@ -184,7 +184,7 @@ const EcommerceAdmin = () => {
   // Fetch products from server
   useEffect(() => {
     axios
-      .get("https://ecommerce-server-p79x.onrender.com/product")
+      .get(`${import.meta.env.VITE_URL}/product`)
       .then((res) => {
         setProducts(res.data);
       })

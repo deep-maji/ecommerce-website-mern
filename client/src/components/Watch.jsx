@@ -18,7 +18,7 @@ export const Phone = () => {
       
       try {
         let res = await axios.post(
-          "https://ecommerce-server-p79x.onrender.com/cart",
+          `${import.meta.env.VITE_URL}/cart`,
           {
             productId: productId,
             quantity: 1
@@ -45,7 +45,7 @@ export const Phone = () => {
 
   // Fetch products with axios
   useEffect(() => {
-    axios.get("https://ecommerce-server-p79x.onrender.com/product")
+    axios.get(`${import.meta.env.VITE_URL}/product`)
       .then((res) => {
         const mobileProducts = res.data.filter(
           (item) => item.category.toLowerCase() === "watch"

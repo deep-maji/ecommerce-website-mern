@@ -18,7 +18,7 @@ export const Camera = () => {
 
       try {
         let res = await axios.post(
-          "https://ecommerce-server-p79x.onrender.com/cart",
+          `${import.meta.env.VITE_URL}/cart`,
           {
             productId: productId,
             quantity: 1
@@ -44,7 +44,7 @@ export const Camera = () => {
   };
 
   useEffect(() => {
-    axios.get("https://ecommerce-server-p79x.onrender.com/product")
+    axios.get(`${import.meta.env.VITE_URL}/product`)
       .then(res => {
         const cameraProducts = res.data.filter(item => item.category?.toLowerCase() === "camera");
         setProducts(cameraProducts);

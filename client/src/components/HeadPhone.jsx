@@ -17,7 +17,7 @@ export const Headphone = () => {
 
       try {
         let res = await axios.post(
-          "https://ecommerce-server-p79x.onrender.com/cart",
+          `${import.meta.env.VITE_URL}/cart`,
           {
             productId: productId,
             quantity: 1
@@ -44,7 +44,7 @@ export const Headphone = () => {
 
   // Fetch only headphone category products
   useEffect(() => {
-    axios.get("https://ecommerce-server-p79x.onrender.com/product")
+    axios.get(`${import.meta.env.VITE_URL}/product`)
       .then((res) => {
         const headphoneProducts = res.data.filter(
           (item) => item.category.toLowerCase() === "headphone"
