@@ -112,7 +112,7 @@ export const User = () => {
         address: address,
       };
 
-      const res = await axios.patch(`${import.meta.env.VITE_URL}/users/`, updatedData, {
+      const res = await axios.patch(`${import.meta.env.VITE_URL}/users`, updatedData, {
         headers: {
           Authorization: token,
           "Content-Type": "application/json",
