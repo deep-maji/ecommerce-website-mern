@@ -19,7 +19,7 @@ export const User = () => {
   const getOrderDetails = async () => {
     const token = localStorage.getItem("authToken");
     try {
-      const res = await axios.get(`{import.meta.env.VITE_URL}/orders`, {
+      const res = await axios.get(`${import.meta.env.VITE_URL}/orders`, {
         headers: {
           Authorization: token,
         },
