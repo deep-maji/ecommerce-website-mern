@@ -270,7 +270,7 @@ export const User = () => {
                             {order.status}
                           </span>
                         </td>
-                        <td>{order.total}</td>
+                        <td>₹{order.total}</td>
                         <td>
                           {order.status !== "Cancelled" &&
                             order.status !== "Delivered" && (
