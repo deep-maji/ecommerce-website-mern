@@ -16,8 +16,9 @@ app.use("/productImages", express.static("productImages"));
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://ecommerce-website-mern-six.vercel.app" 
-  ]
+    "https://ecommerce-website-mern-six.vercel.app"
+  ],
+  credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
