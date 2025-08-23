@@ -14,22 +14,22 @@ function Footer() {
       <div className="footer-column brand">
         <h2><NavLink to="/"><img src={Logo2}></img></NavLink></h2>
         <p>
-          Shopwise is your trusted e-commerce destination for quality products.
+          Cyber is your trusted e-commerce destination for quality products.
         </p>
-        <div className="social-icons">
+        {/* <div className="social-icons">
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
             <img src={Twitter} alt="Twitter" />
           </a>
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
             <img src={Facebook} alt="Facebook" />
           </a>
-          {/* <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
             <img src={Tiktok} alt="Tiktok" />
-          </a> */}
+          </a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <img src={Instagram} alt="Instagram" />
           </a>
-        </div>
+        </div> */}
       </div>
 
       <div className="footer-column mid">

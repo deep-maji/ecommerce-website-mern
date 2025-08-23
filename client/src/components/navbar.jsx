@@ -19,7 +19,7 @@ export const Navbar = () => {
   
   return (
     <>
-      <div id="burger-menu-open">
+      {/* <div id="burger-menu-open">
         <div id="burger-menu-close" onClick={closeMenu}>X</div>
         <div id="burger-menu-actions">
             <NavLink to={"/"} className="action-btn nav-active"><div>Home</div></NavLink>
@@ -27,7 +27,7 @@ export const Navbar = () => {
             <a href="#" className="action-btn"><div>Contact Us</div></a>
             <a href="#" className="action-btn"><div>Blog</div></a>
           </div>
-      </div>
+      </div> */}
       <header>
         <nav>
           <div id="logo">
@@ -62,9 +62,9 @@ export const Navbar = () => {
               <NavLink to={'/users/signup'}><img src={User} alt="user"></img></NavLink>
             </div>
           </div>
-          <div id="burger-menu" onClick={openMenu}>
+          {/* <div id="burger-menu" onClick={openMenu}>
             <img src={Burger} alt="menu"></img>
-          </div>
+          </div> */}
         </nav>
       </header>
     </>
