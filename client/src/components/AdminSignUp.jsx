@@ -53,7 +53,7 @@ export default function AdminLogin() {
           localStorage.setItem("adminInfo", JSON.stringify(res.data.admin));
 
           alert(res.data.msg || "Login successful!");
-          navigate("/admin/user"); // ✅ navigate after login
+          navigate("/admin/user"); // navigate after login
         }
       } catch (err) {
         alert(err.response?.data?.msg || "Login failed. Please try again.");
